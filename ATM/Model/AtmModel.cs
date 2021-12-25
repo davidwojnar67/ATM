@@ -22,6 +22,7 @@ namespace ATM {
       }
 
       public async Task<Client> CreateClient(Client client) {
+         client.PinCodeHash = BCrypt.Net.BCrypt.HashPassword(client.PinCodeHash);
          _myDbContext.Clients.Add(client);
          await _myDbContext.SaveChangesAsync();
          _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, "Vklad pøi založení bìžného úètu", null));
@@ -73,8 +74,17 @@ namespace ATM {
          return null;
       }
 
-      public Task<List<CurrentAccount>> ClientAccounts(int Id) {
-         throw new NotImplementedException();
+      public bool Authenticate(string username, string pinCode) {
+         var account = _myDbContext.Clients.FirstOrDefault(x => x.Username == username);
+
+         if (account == null || !BCrypt.Net.BCrypt.Verify(pinCode, account.PinCodeHash)) {
+            return false;
+         }
+         else {
+            return true;
+         }
       }
+
    }
+
 }

@@ -59,5 +59,12 @@ namespace ATM.Controllers {
          return Ok(result);
       }
 
+      [HttpGet("Authenticate")]
+      public bool Authenticate(string username, string pinCode) {
+         var result = _atmModel.Authenticate(username, pinCode);
+
+         return result;
+      }
+
    }
 }

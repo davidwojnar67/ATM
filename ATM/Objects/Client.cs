@@ -12,6 +12,7 @@ namespace ATM {
       public DateTime DateOfBirth { get; set; }
       public CurrentAccount CurrentAccount { get; set; }
       public SavingsAccount SavingsAccount { get; set; }
-
+      public string Username { get; set; }
+      public string PinCodeHash { get; set; }
    }
 }

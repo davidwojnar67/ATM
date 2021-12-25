@@ -53,6 +53,14 @@ namespace ATM {
       /// <param name="amount"></param>
       /// <returns></returns>
       Task<CurrentAccount> SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient);
-     
+
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="username"></param>
+      /// <param name="pin"></param>
+      /// <returns></returns>
+      bool Authenticate(string username, string pinCode);
+
    }
 }

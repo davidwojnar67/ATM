@@ -58,3 +58,4 @@ D:\programovani\ATM\ATM\obj\Debug\net5.0\Atm.pdb
 D:\programovani\ATM\ATM\obj\Debug\net5.0\Atm.genruntimeconfig.cache
 D:\programovani\ATM\ATM\bin\Debug\net5.0\Humanizer.dll
 D:\programovani\ATM\ATM\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\programovani\ATM\ATM\bin\Debug\net5.0\BCrypt.Net-Next.dll
