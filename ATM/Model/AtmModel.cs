@@ -25,8 +25,8 @@ namespace ATM {
          client.PinCodeHash = BCrypt.Net.BCrypt.HashPassword(client.PinCodeHash);
          _myDbContext.Clients.Add(client);
          await _myDbContext.SaveChangesAsync();
-         _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, "Vklad pøi založení bìžného úètu", null));
-         _myDbContext.TransactionHistory.Add(new Transaction(client.SavingsAccount.IdAccount, client.SavingsAccount.Balance, 1, null, null, null, "Vklad pøi založení spoøicího úètu", null));
+         _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, "Deposit when opening a current account", null));
+         _myDbContext.TransactionHistory.Add(new Transaction(client.SavingsAccount.IdAccount, client.SavingsAccount.Balance, 1, null, null, null, "Deposit when opening a savings account", null));
          await _myDbContext.SaveChangesAsync();
 
          return client;

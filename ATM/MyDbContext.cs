@@ -18,10 +18,10 @@ namespace ATM {
 
       protected override void OnModelCreating(ModelBuilder modelBuilder) {
          modelBuilder.Entity<Cdl_Movement>().HasData(
-            new Cdl_Movement { Id = 1, Typ = "Vklad" },
-            new Cdl_Movement { Id = 2, Typ = "Výbìr" },
-            new Cdl_Movement { Id = 3, Typ = "Odchozí platba" },
-            new Cdl_Movement { Id = 4, Typ = "Pøíchozí platba" }
+            new Cdl_Movement { Id = 1, Typ = "Deposit" },
+            new Cdl_Movement { Id = 2, Typ = "Withdraw" },
+            new Cdl_Movement { Id = 3, Typ = "Outgoing Payment" },
+            new Cdl_Movement { Id = 4, Typ = "Incoming payment" }
             );
       }
    }
