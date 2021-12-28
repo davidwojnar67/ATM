@@ -24,23 +24,38 @@ namespace AtmUI {
       /// the contents of this method with the code editor.
       /// </summary>
       private void InitializeComponent() {
+         this.LogOutBtn = new System.Windows.Forms.Button();
          this.SuspendLayout();
+         // 
+         // LogOutBtn
+         // 
+         this.LogOutBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+         this.LogOutBtn.Location = new System.Drawing.Point(360, 612);
+         this.LogOutBtn.Name = "LogOutBtn";
+         this.LogOutBtn.Size = new System.Drawing.Size(163, 57);
+         this.LogOutBtn.TabIndex = 17;
+         this.LogOutBtn.Text = "Log out";
+         this.LogOutBtn.UseVisualStyleBackColor = true;
+         this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
          // 
          // Home
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(800, 450);
+         this.ClientSize = new System.Drawing.Size(916, 745);
+         this.Controls.Add(this.LogOutBtn);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
          this.MaximizeBox = false;
          this.Name = "Home";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-         this.Text = "Home";
+         this.Text = "ATM - Home";
          this.ResumeLayout(false);
 
       }
 
       #endregion
+
+      private System.Windows.Forms.Button LogOutBtn;
    }
 }

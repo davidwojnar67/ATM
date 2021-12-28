@@ -27,7 +27,7 @@ namespace AtmUI {
 
       private void CreateAccBtn_Click(object sender, EventArgs e) {
          this.Close();
-         CreateAcc createAcc = new();
+         CreateAcc createAcc = new(new CreateAccMethods());
          createAcc.Show();
       }
    }

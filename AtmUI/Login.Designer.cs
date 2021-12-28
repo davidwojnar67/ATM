@@ -52,8 +52,9 @@ namespace AtmUI {
          // 
          // LoginBtn
          // 
+         this.LoginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
          this.LoginBtn.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.LoginBtn.Location = new System.Drawing.Point(204, 232);
+         this.LoginBtn.Location = new System.Drawing.Point(204, 235);
          this.LoginBtn.Name = "LoginBtn";
          this.LoginBtn.Size = new System.Drawing.Size(163, 57);
          this.LoginBtn.TabIndex = 2;
@@ -65,10 +66,10 @@ namespace AtmUI {
          // 
          this.label1.AutoSize = true;
          this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-         this.label1.Location = new System.Drawing.Point(235, 24);
+         this.label1.Location = new System.Drawing.Point(235, 25);
          this.label1.Name = "label1";
          this.label1.Size = new System.Drawing.Size(104, 45);
-         this.label1.TabIndex = 3;
+         this.label1.TabIndex = 4;
          this.label1.Text = "ATM";
          // 
          // label2
@@ -93,11 +94,12 @@ namespace AtmUI {
          // 
          // CreateAccBtn
          // 
+         this.CreateAccBtn.Cursor = System.Windows.Forms.Cursors.Hand;
          this.CreateAccBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-         this.CreateAccBtn.Location = new System.Drawing.Point(204, 322);
+         this.CreateAccBtn.Location = new System.Drawing.Point(204, 325);
          this.CreateAccBtn.Name = "CreateAccBtn";
          this.CreateAccBtn.Size = new System.Drawing.Size(163, 67);
-         this.CreateAccBtn.TabIndex = 5;
+         this.CreateAccBtn.TabIndex = 3;
          this.CreateAccBtn.Text = "Create account";
          this.CreateAccBtn.UseVisualStyleBackColor = true;
          this.CreateAccBtn.Click += new System.EventHandler(this.CreateAccBtn_Click);

@@ -13,5 +13,11 @@ namespace AtmUI {
       public Home() {
          InitializeComponent();
       }
+
+      private void LogOutBtn_Click(object sender, EventArgs e) {
+         this.Close();
+         Login login = new(new LoginMethods());
+         login.Show();
+      }
    }
 }
