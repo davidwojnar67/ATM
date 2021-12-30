@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Atm.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20211225180244_5")]
-    partial class _5
+    [Migration("20211229234544_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,22 +39,22 @@ namespace Atm.Migrations
                         new
                         {
                             Id = 1,
-                            Typ = "Vklad"
+                            Typ = "Deposit"
                         },
                         new
                         {
                             Id = 2,
-                            Typ = "Výběr"
+                            Typ = "Withdraw"
                         },
                         new
                         {
                             Id = 3,
-                            Typ = "Odchozí platba"
+                            Typ = "Outgoing Payment"
                         },
                         new
                         {
                             Id = 4,
-                            Typ = "Příchozí platba"
+                            Typ = "Incoming payment"
                         });
                 });
 

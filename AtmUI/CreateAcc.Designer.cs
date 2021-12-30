@@ -39,18 +39,20 @@ namespace AtmUI {
          this.NameTb = new System.Windows.Forms.TextBox();
          this.BackToLoginBtn = new System.Windows.Forms.Button();
          this.CreateAccBtn = new System.Windows.Forms.Button();
-         this.CurrentAccBalanceTb = new System.Windows.Forms.TextBox();
-         this.SavingAccBalanceTb = new System.Windows.Forms.TextBox();
          this.label8 = new System.Windows.Forms.Label();
          this.groupBox1 = new System.Windows.Forms.GroupBox();
+         this.CurrentAccBalanceNum = new System.Windows.Forms.NumericUpDown();
          this.groupBox2 = new System.Windows.Forms.GroupBox();
+         this.SavingAccBalanceNum = new System.Windows.Forms.NumericUpDown();
          this.MonthlyInterestLbl = new System.Windows.Forms.Label();
          this.label10 = new System.Windows.Forms.Label();
          this.label9 = new System.Windows.Forms.Label();
          this.groupBox3 = new System.Windows.Forms.GroupBox();
          this.groupBox4 = new System.Windows.Forms.GroupBox();
          this.groupBox1.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.CurrentAccBalanceNum)).BeginInit();
          this.groupBox2.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.SavingAccBalanceNum)).BeginInit();
          this.groupBox3.SuspendLayout();
          this.groupBox4.SuspendLayout();
          this.SuspendLayout();
@@ -202,22 +204,6 @@ namespace AtmUI {
          this.CreateAccBtn.UseVisualStyleBackColor = true;
          this.CreateAccBtn.Click += new System.EventHandler(this.CreateAccBtn_Click);
          // 
-         // CurrentAccBalanceTb
-         // 
-         this.CurrentAccBalanceTb.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.CurrentAccBalanceTb.Location = new System.Drawing.Point(270, 70);
-         this.CurrentAccBalanceTb.Name = "CurrentAccBalanceTb";
-         this.CurrentAccBalanceTb.Size = new System.Drawing.Size(200, 43);
-         this.CurrentAccBalanceTb.TabIndex = 0;
-         // 
-         // SavingAccBalanceTb
-         // 
-         this.SavingAccBalanceTb.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.SavingAccBalanceTb.Location = new System.Drawing.Point(270, 142);
-         this.SavingAccBalanceTb.Name = "SavingAccBalanceTb";
-         this.SavingAccBalanceTb.Size = new System.Drawing.Size(200, 43);
-         this.SavingAccBalanceTb.TabIndex = 0;
-         // 
          // label8
          // 
          this.label8.AutoSize = true;
@@ -233,7 +219,7 @@ namespace AtmUI {
          // groupBox1
          // 
          this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-         this.groupBox1.Controls.Add(this.CurrentAccBalanceTb);
+         this.groupBox1.Controls.Add(this.CurrentAccBalanceNum);
          this.groupBox1.Controls.Add(this.label8);
          this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
          this.groupBox1.Location = new System.Drawing.Point(530, 100);
@@ -243,12 +229,25 @@ namespace AtmUI {
          this.groupBox1.TabStop = false;
          this.groupBox1.Text = "Current account";
          // 
+         // CurrentAccBalanceNum
+         // 
+         this.CurrentAccBalanceNum.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+         this.CurrentAccBalanceNum.Location = new System.Drawing.Point(270, 70);
+         this.CurrentAccBalanceNum.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+         this.CurrentAccBalanceNum.Name = "CurrentAccBalanceNum";
+         this.CurrentAccBalanceNum.Size = new System.Drawing.Size(200, 43);
+         this.CurrentAccBalanceNum.TabIndex = 0;
+         // 
          // groupBox2
          // 
+         this.groupBox2.Controls.Add(this.SavingAccBalanceNum);
          this.groupBox2.Controls.Add(this.MonthlyInterestLbl);
          this.groupBox2.Controls.Add(this.label10);
          this.groupBox2.Controls.Add(this.label9);
-         this.groupBox2.Controls.Add(this.SavingAccBalanceTb);
          this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
          this.groupBox2.Location = new System.Drawing.Point(530, 290);
          this.groupBox2.Name = "groupBox2";
@@ -256,6 +255,19 @@ namespace AtmUI {
          this.groupBox2.TabIndex = 4;
          this.groupBox2.TabStop = false;
          this.groupBox2.Text = "Savings account";
+         // 
+         // SavingAccBalanceNum
+         // 
+         this.SavingAccBalanceNum.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+         this.SavingAccBalanceNum.Location = new System.Drawing.Point(270, 142);
+         this.SavingAccBalanceNum.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+         this.SavingAccBalanceNum.Name = "SavingAccBalanceNum";
+         this.SavingAccBalanceNum.Size = new System.Drawing.Size(200, 43);
+         this.SavingAccBalanceNum.TabIndex = 0;
          // 
          // MonthlyInterestLbl
          // 
@@ -339,8 +351,10 @@ namespace AtmUI {
          this.Text = "ATM - Create Account";
          this.groupBox1.ResumeLayout(false);
          this.groupBox1.PerformLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.CurrentAccBalanceNum)).EndInit();
          this.groupBox2.ResumeLayout(false);
          this.groupBox2.PerformLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.SavingAccBalanceNum)).EndInit();
          this.groupBox3.ResumeLayout(false);
          this.groupBox3.PerformLayout();
          this.groupBox4.ResumeLayout(false);
@@ -367,8 +381,6 @@ namespace AtmUI {
       private System.Windows.Forms.TextBox NameTb;
       private System.Windows.Forms.Button BackToLoginBtn;
       private System.Windows.Forms.Button CreateAccBtn;
-      private System.Windows.Forms.TextBox CurrentAccBalanceTb;
-      private System.Windows.Forms.TextBox SavingAccBalanceTb;
       private System.Windows.Forms.Label label8;
       private System.Windows.Forms.GroupBox groupBox1;
       private System.Windows.Forms.GroupBox groupBox2;
@@ -377,5 +389,7 @@ namespace AtmUI {
       private System.Windows.Forms.Label label9;
       private System.Windows.Forms.GroupBox groupBox3;
       private System.Windows.Forms.GroupBox groupBox4;
+      private System.Windows.Forms.NumericUpDown CurrentAccBalanceNum;
+      private System.Windows.Forms.NumericUpDown SavingAccBalanceNum;
    }
 }

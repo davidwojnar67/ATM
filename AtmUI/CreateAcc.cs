@@ -12,13 +12,13 @@ namespace AtmUI {
    public partial class CreateAcc : Form {
 
       private readonly CreateAccMethods createAccMethods;
-      private readonly double MonthlyInterest;     
+      private readonly double monthlyInterest;
 
       public CreateAcc(CreateAccMethods createAccMethods) {
          InitializeComponent();
          this.createAccMethods = createAccMethods;
-         MonthlyInterest = createAccMethods.RandomMonthlyInterest();
-         MonthlyInterestLbl.Text = MonthlyInterest.ToString() + " %";
+         monthlyInterest = createAccMethods.RandomMonthlyInterest();
+         MonthlyInterestLbl.Text = monthlyInterest.ToString() + "%";
          MonthlyInterestLbl.Refresh();
       }
 
@@ -29,7 +29,10 @@ namespace AtmUI {
       }
 
       private void CreateAccBtn_Click(object sender, EventArgs e) {
-         
+         createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
+         this.Close();
+         Login login = new(new LoginMethods());
+         login.Show();
       }
    }
 }

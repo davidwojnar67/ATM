@@ -67,7 +67,9 @@ namespace Atm.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CurrentAccountIdAccount = table.Column<int>(type: "int", nullable: true),
-                    SavingsAccountIdAccount = table.Column<int>(type: "int", nullable: true)
+                    SavingsAccountIdAccount = table.Column<int>(type: "int", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PinCodeHash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,10 +93,10 @@ namespace Atm.Migrations
                 columns: new[] { "Id", "Typ" },
                 values: new object[,]
                 {
-                    { 1, "Vklad" },
-                    { 2, "Výběr" },
-                    { 3, "Odchozí platba" },
-                    { 4, "Příchozí platba" }
+                    { 1, "Deposit" },
+                    { 2, "Withdraw" },
+                    { 3, "Outgoing Payment" },
+                    { 4, "Incoming payment" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -29,8 +29,9 @@ namespace AtmUI {
          // 
          // LogOutBtn
          // 
+         this.LogOutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
          this.LogOutBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-         this.LogOutBtn.Location = new System.Drawing.Point(360, 612);
+         this.LogOutBtn.Location = new System.Drawing.Point(805, 688);
          this.LogOutBtn.Name = "LogOutBtn";
          this.LogOutBtn.Size = new System.Drawing.Size(163, 57);
          this.LogOutBtn.TabIndex = 17;
@@ -42,7 +43,7 @@ namespace AtmUI {
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(916, 745);
+         this.ClientSize = new System.Drawing.Size(980, 757);
          this.Controls.Add(this.LogOutBtn);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;

@@ -37,22 +37,22 @@ namespace Atm.Migrations
                         new
                         {
                             Id = 1,
-                            Typ = "Vklad"
+                            Typ = "Deposit"
                         },
                         new
                         {
                             Id = 2,
-                            Typ = "Výběr"
+                            Typ = "Withdraw"
                         },
                         new
                         {
                             Id = 3,
-                            Typ = "Odchozí platba"
+                            Typ = "Outgoing Payment"
                         },
                         new
                         {
                             Id = 4,
-                            Typ = "Příchozí platba"
+                            Typ = "Incoming payment"
                         });
                 });
 
