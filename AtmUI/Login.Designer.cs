@@ -24,6 +24,7 @@ namespace AtmUI {
       ///  the contents of this method with the code editor.
       /// </summary>
       private void InitializeComponent() {
+         this.components = new System.ComponentModel.Container();
          this.UsernameTb = new System.Windows.Forms.TextBox();
          this.PinCodeTb = new System.Windows.Forms.TextBox();
          this.LoginBtn = new System.Windows.Forms.Button();
@@ -31,6 +32,8 @@ namespace AtmUI {
          this.label2 = new System.Windows.Forms.Label();
          this.label3 = new System.Windows.Forms.Label();
          this.CreateAccBtn = new System.Windows.Forms.Button();
+         this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
          this.SuspendLayout();
          // 
          // UsernameTb
@@ -40,6 +43,7 @@ namespace AtmUI {
          this.UsernameTb.Name = "UsernameTb";
          this.UsernameTb.Size = new System.Drawing.Size(160, 43);
          this.UsernameTb.TabIndex = 0;
+         this.UsernameTb.Validating += new System.ComponentModel.CancelEventHandler(this.UsernameTb_Validating);
          // 
          // PinCodeTb
          // 
@@ -49,6 +53,7 @@ namespace AtmUI {
          this.PinCodeTb.PasswordChar = '*';
          this.PinCodeTb.Size = new System.Drawing.Size(160, 43);
          this.PinCodeTb.TabIndex = 1;
+         this.PinCodeTb.Validating += new System.ComponentModel.CancelEventHandler(this.PinCodeTb_Validating);
          // 
          // LoginBtn
          // 
@@ -104,6 +109,11 @@ namespace AtmUI {
          this.CreateAccBtn.UseVisualStyleBackColor = true;
          this.CreateAccBtn.Click += new System.EventHandler(this.CreateAccBtn_Click);
          // 
+         // errorProvider
+         // 
+         this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+         this.errorProvider.ContainerControl = this;
+         // 
          // Login
          // 
          this.AcceptButton = this.LoginBtn;
@@ -123,6 +133,7 @@ namespace AtmUI {
          this.Name = "Login";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "ATM - Login";
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -137,6 +148,7 @@ namespace AtmUI {
       private System.Windows.Forms.Label label2;
       private System.Windows.Forms.Label label3;
       private System.Windows.Forms.Button CreateAccBtn;
+      private System.Windows.Forms.ErrorProvider errorProvider;
    }
 }
 

@@ -24,6 +24,7 @@ namespace AtmUI {
       /// the contents of this method with the code editor.
       /// </summary>
       private void InitializeComponent() {
+         this.components = new System.ComponentModel.Container();
          this.label1 = new System.Windows.Forms.Label();
          this.label2 = new System.Windows.Forms.Label();
          this.label3 = new System.Windows.Forms.Label();
@@ -49,12 +50,14 @@ namespace AtmUI {
          this.label9 = new System.Windows.Forms.Label();
          this.groupBox3 = new System.Windows.Forms.GroupBox();
          this.groupBox4 = new System.Windows.Forms.GroupBox();
+         this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
          this.groupBox1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.CurrentAccBalanceNum)).BeginInit();
          this.groupBox2.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.SavingAccBalanceNum)).BeginInit();
          this.groupBox3.SuspendLayout();
          this.groupBox4.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
          this.SuspendLayout();
          // 
          // label1
@@ -135,6 +138,7 @@ namespace AtmUI {
          this.PinCodeTb.PasswordChar = '*';
          this.PinCodeTb.Size = new System.Drawing.Size(200, 43);
          this.PinCodeTb.TabIndex = 1;
+         this.PinCodeTb.Validating += new System.ComponentModel.CancelEventHandler(this.PinCodeTb_Validating);
          // 
          // UsernameTb
          // 
@@ -143,6 +147,7 @@ namespace AtmUI {
          this.UsernameTb.Name = "UsernameTb";
          this.UsernameTb.Size = new System.Drawing.Size(200, 43);
          this.UsernameTb.TabIndex = 0;
+         this.UsernameTb.Validating += new System.ComponentModel.CancelEventHandler(this.UsernameTb_Validating);
          // 
          // DateOfBirthDtp
          // 
@@ -163,6 +168,7 @@ namespace AtmUI {
          this.AddressTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
          this.AddressTb.Size = new System.Drawing.Size(200, 86);
          this.AddressTb.TabIndex = 3;
+         this.AddressTb.Validating += new System.ComponentModel.CancelEventHandler(this.AddressTb_Validating);
          // 
          // SurnameTb
          // 
@@ -171,6 +177,7 @@ namespace AtmUI {
          this.SurnameTb.Name = "SurnameTb";
          this.SurnameTb.Size = new System.Drawing.Size(200, 43);
          this.SurnameTb.TabIndex = 1;
+         this.SurnameTb.Validating += new System.ComponentModel.CancelEventHandler(this.SurnameTb_Validating);
          // 
          // NameTb
          // 
@@ -179,6 +186,7 @@ namespace AtmUI {
          this.NameTb.Name = "NameTb";
          this.NameTb.Size = new System.Drawing.Size(200, 43);
          this.NameTb.TabIndex = 0;
+         this.NameTb.Validating += new System.ComponentModel.CancelEventHandler(this.NameTb_Validating);
          // 
          // BackToLoginBtn
          // 
@@ -331,6 +339,11 @@ namespace AtmUI {
          this.groupBox4.TabIndex = 1;
          this.groupBox4.TabStop = false;
          // 
+         // errorProvider
+         // 
+         this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+         this.errorProvider.ContainerControl = this;
+         // 
          // CreateAcc
          // 
          this.AcceptButton = this.CreateAccBtn;
@@ -359,6 +372,7 @@ namespace AtmUI {
          this.groupBox3.PerformLayout();
          this.groupBox4.ResumeLayout(false);
          this.groupBox4.PerformLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -391,5 +405,6 @@ namespace AtmUI {
       private System.Windows.Forms.GroupBox groupBox4;
       private System.Windows.Forms.NumericUpDown CurrentAccBalanceNum;
       private System.Windows.Forms.NumericUpDown SavingAccBalanceNum;
+      private System.Windows.Forms.ErrorProvider errorProvider;
    }
 }
