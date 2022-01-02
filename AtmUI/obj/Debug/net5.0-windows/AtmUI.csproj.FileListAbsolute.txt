@@ -20,3 +20,5 @@ D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.pdb
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.genruntimeconfig.cache
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.CreateAcc.resources
 D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\AtmUI.dll.config
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.InsertWithdrawMoney.resources

@@ -7,6 +7,9 @@
     <Compile Update="Home.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="InsertWithdrawMoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>

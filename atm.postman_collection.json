@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "24157d9b-2b87-4f70-bba7-8825a2f7d031",
+		"name": "atm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "InsertMoney",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/InsertMoney?IdAccount=&amount=",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"InsertMoney"
+					],
+					"query": [
+						{
+							"key": "IdAccount",
+							"value": ""
+						},
+						{
+							"key": "amount",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WithdrawMoney",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/WithdrawMoney?IdAccount=&amount=",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"WithdrawMoney"
+					],
+					"query": [
+						{
+							"key": "IdAccount",
+							"value": ""
+						},
+						{
+							"key": "amount",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/Authenticate?username&pinCode",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"Authenticate"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": null
+						},
+						{
+							"key": "pinCode",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ClientById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/ClientById?Id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"ClientById"
+					],
+					"query": [
+						{
+							"key": "Id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ClientByUsername",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/ClientByUsername?Username",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"ClientByUsername"
+					],
+					"query": [
+						{
+							"key": "Username",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"\",\r\n  \"surname\": \"\",\r\n  \"address\": \"\",\r\n  \"DateOfBirth\": \"2000-12-30T00:00:00\",\r\n  \"currentAccount\": {\r\n    \"balance\": 0\r\n  },\r\n  \"savingsAccount\": {\r\n    \"balance\": 0,\r\n    \"interestPerMensem\": 0\r\n  },\r\n  \"username\": \"\",\r\n  \"pinCodeHash\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/CreateClient",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"CreateClient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TransactionHistory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/TransactionHistory?IdAccount=",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"TransactionHistory"
+					],
+					"query": [
+						{
+							"key": "IdAccount",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SendMoney",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/SendMoney?IdAccount&IdRecipientAccount&amount&variableNumber&note&noteForRecipient",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"SendMoney"
+					],
+					"query": [
+						{
+							"key": "IdAccount",
+							"value": null
+						},
+						{
+							"key": "IdRecipientAccount",
+							"value": null
+						},
+						{
+							"key": "amount",
+							"value": null
+						},
+						{
+							"key": "variableNumber",
+							"value": null
+						},
+						{
+							"key": "note",
+							"value": null
+						},
+						{
+							"key": "noteForRecipient",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:5001"
+		}
+	]
+}

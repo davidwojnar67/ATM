@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/1MDlIGnBF6YBh589SVPv124sAshRuQ82GElUm8FXtlIautr09cEXg3kDiuBrBoNOoT5nO7CtRrO80XeQmanUQ==",
+  "dgSpecHash": "pqNaOc9ziCwM1QOE3bgNkt3s/mm6SeIAdD1jNRtIayGnylod5T/+9lwG9U06vf/aVaWx0795wuPX+pMad5yuTg==",
   "success": true,
   "projectFilePath": "D:\\programovani\\ATM\\AtmUI\\AtmUI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DW\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\DW\\.nuget\\packages\\restsharp\\106.15.0\\restsharp.106.15.0.nupkg.sha512"
   ],
   "logs": []
