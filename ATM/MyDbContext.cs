@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ATM {
    public class MyDbContext : DbContext {
@@ -13,7 +14,7 @@ namespace ATM {
       public DbSet<Transaction> TransactionHistory { get; set; }
       public DbSet<CurrentAccount> Accounts { get; set; }
       public DbSet<Cdl_Movement> Cdl_Movements { get; set; }
-      //public DbSet<SavingsAccount> SavingsAccounts { get; set; }
+      //public DbSet<SavingsAccount> Accounts { get; set; }
 
 
       protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -24,5 +25,6 @@ namespace ATM {
             new Cdl_Movement { Id = 4, Typ = "Incoming payment" }
             );
       }
+
    }
 }

@@ -10,8 +10,13 @@ using System.Windows.Forms;
 
 namespace AtmUI {
    public partial class Home : Form {
-      public Home() {
+
+      private readonly HomeMethods homeMethods;
+
+      public Home(HomeMethods homeMethods) {
          InitializeComponent();
+         this.homeMethods = homeMethods;
+         label1.Text = homeMethods.LoggedUsername;
       }
 
       private void LogOutBtn_Click(object sender, EventArgs e) {

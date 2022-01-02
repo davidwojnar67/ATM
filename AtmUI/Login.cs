@@ -16,8 +16,8 @@ namespace AtmUI {
       private void LoginBtn_Click(object sender, EventArgs e) {
          if (ValidateChildren(ValidationConstraints.Enabled)) {
             if (loginMethods.Login(UsernameTb.Text, PinCodeTb.Text)) {
+               Home home = new Home(new HomeMethods(UsernameTb.Text));
                this.Close();
-               Home home = new();
                home.Show();
             }
             else {

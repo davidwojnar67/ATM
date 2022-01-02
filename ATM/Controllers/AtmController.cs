@@ -17,11 +17,30 @@ namespace ATM.Controllers {
          _atmModel = atmModel;
       }
 
-      [HttpGet("Client")]
-      public async Task<IActionResult> Client(int Id) {
-         var result = await _atmModel.Client(Id);
+      [HttpGet("ClientById")]
+      public IActionResult Client(int Id) {
+         Client client;
+         try {
+            client = _atmModel.Client(Id);
+         }
+         catch (Exception) {
+            return NotFound();
+         }
 
-         return Ok(result);
+         return Ok(client);
+      }
+
+      [HttpGet("ClientByUsername")]
+      public IActionResult Client(string Username) {
+         Client client;
+         try {
+            client = _atmModel.Client(Username);
+         }
+         catch (Exception) {
+            return NotFound();
+         }
+
+         return Ok(client);
       }
 
       [HttpPost("CreateClient")]

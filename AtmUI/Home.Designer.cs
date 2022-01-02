@@ -25,6 +25,7 @@ namespace AtmUI {
       /// </summary>
       private void InitializeComponent() {
          this.LogOutBtn = new System.Windows.Forms.Button();
+         this.label1 = new System.Windows.Forms.Label();
          this.SuspendLayout();
          // 
          // LogOutBtn
@@ -39,11 +40,22 @@ namespace AtmUI {
          this.LogOutBtn.UseVisualStyleBackColor = true;
          this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
          // 
+         // label1
+         // 
+         this.label1.AutoSize = true;
+         this.label1.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+         this.label1.Location = new System.Drawing.Point(328, 77);
+         this.label1.Name = "label1";
+         this.label1.Size = new System.Drawing.Size(97, 41);
+         this.label1.TabIndex = 18;
+         this.label1.Text = "label1";
+         // 
          // Home
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(980, 757);
+         this.Controls.Add(this.label1);
          this.Controls.Add(this.LogOutBtn);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -52,11 +64,13 @@ namespace AtmUI {
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "ATM - Home";
          this.ResumeLayout(false);
+         this.PerformLayout();
 
       }
 
       #endregion
 
       private System.Windows.Forms.Button LogOutBtn;
+      private System.Windows.Forms.Label label1;
    }
 }

@@ -15,8 +15,14 @@ namespace ATM {
          _myDbContext = myDbContext;
       }
 
-      public async Task<List<Client>> Client(int Id) {
-         var foundClient = await _myDbContext.Clients.Where(x => x.IdClient == Id).ToListAsync();
+      public Client Client(int Id) {
+         var foundClient = _myDbContext.Clients.Where(x => x.IdClient == Id).Include(x => x.CurrentAccount).Include(x => x.SavingsAccount).First();
+
+         return foundClient;
+      }
+
+      public Client Client(string Username) {
+         var foundClient = _myDbContext.Clients.Where(x => x.Username == Username).Include(x => x.CurrentAccount).Include(x => x.SavingsAccount).First();
 
          return foundClient;
       }

@@ -13,7 +13,14 @@ namespace ATM {
       /// Vrátí klienta dle id
       /// </summary>
       /// <returns></returns>
-      Task<List<Client>> Client(int Id);
+      Client Client(int Id);
+
+      /// <summary>
+      /// Vrátí klienta dle username
+      /// </summary>
+      /// <param name="Username"></param>
+      /// <returns></returns>
+      Client Client(string Username);
 
       /// <summary>
       /// Vytvoøí nového klienta
