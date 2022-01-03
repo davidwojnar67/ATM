@@ -1,6 +1,4 @@
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.csproj.AssemblyReference.cache
-D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.Home.resources
-D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.Login.resources
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.csproj.GenerateResource.cache
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.GeneratedMSBuildEditorConfig.editorconfig
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.AssemblyInfoInputs.cache
@@ -18,7 +16,10 @@ D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.dll
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\ref\AtmUI.dll
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.pdb
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.genruntimeconfig.cache
-D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.CreateAcc.resources
 D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\AtmUI.dll.config
 D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
-D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.InsertWithdrawMoney.resources
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.CreateAccForm.resources
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.HomeForm.resources
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.InsertWithdrawMoneyForm.resources
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.LoginForm.resources
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.SendMoneyForm.resources

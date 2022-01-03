@@ -29,9 +29,9 @@ namespace AtmUI {
       //Napsat tohle korektně
       public string InsertMoney(int idAccount, decimal amount) {
 
-         string url = "https://localhost:5001/InsertMoney?IdAccount=" + idAccount + "&amount=" + amount.ToString().Replace(",",".");
+         string url = "https://localhost:5001/InsertMoney?IdAccount=" + idAccount + "&amount=" + amount.ToString().Replace(",", ".");
 
-         //string url = "https://localhost:5001/InsertMoney"
+         //string url = "https://localhost:5001/InsertMoney";
          RestClient restClient = new(url);
 
          var restRequest = new RestRequest(Method.PATCH);
@@ -44,17 +44,30 @@ namespace AtmUI {
          return response.StatusCode.ToString();
       }
 
-      public string WithdrawMoney(int idAccount, decimal amount) {
+      public int WithdrawMoney(int idAccount, decimal amount) {
 
          string url = "https://localhost:5001/WithdrawMoney?IdAccount=" + idAccount + "&amount=" + amount.ToString().Replace(",", ".");
 
          RestClient restClient = new(url);
 
          var restRequest = new RestRequest(Method.PATCH);
-         
+
          var response = restClient.Execute(restRequest);
 
-         return response.StatusCode.ToString();
+         return ((int)response.StatusCode);
+      }
+
+      public int SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient) {
+
+         string url = "https://localhost:5001/SendMoney?IdAccount=" + IdAccount + "&IdRecipientAccount=" + IdRecipientAccount + "&amount=" + amount.ToString().Replace(",", ".") + "&variableNumber=" + variableNumber + "&note=" + note + "&noteForRecipient=" + noteForRecipient;
+
+         RestClient restClient = new(url);
+
+         var restRequest = new RestRequest(Method.PATCH);
+
+         var response = restClient.Execute(restRequest);
+
+         return ((int)response.StatusCode);
       }
 
 

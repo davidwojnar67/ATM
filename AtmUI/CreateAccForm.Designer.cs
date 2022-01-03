@@ -1,6 +1,6 @@
 ﻿
 namespace AtmUI {
-   partial class CreateAcc {
+   partial class CreateAccForm {
       /// <summary>
       /// Required designer variable.
       /// </summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AtmUI {
-   public partial class Home : Form {
+   public partial class HomeForm : Form {
 
       private readonly HomeMethods homeMethods;
       private int IdCurrentAcc;
       private int IdSavingsAcc;
 
-      public Home(HomeMethods homeMethods) {
+      public HomeForm(HomeMethods homeMethods) {
          InitializeComponent();
          this.homeMethods = homeMethods;
 
@@ -40,7 +41,7 @@ namespace AtmUI {
 
       private void LogOutBtn_Click(object sender, EventArgs e) {
          this.Close();
-         Login login = new(new LoginMethods());
+         LoginForm login = new(new LoginMethods());
          login.Show();
       }
 
@@ -53,19 +54,19 @@ namespace AtmUI {
       }
 
       private void CurrentAccSendMoneyBtn_Click(object sender, EventArgs e) {
-
+         SendMoney(IdCurrentAcc);
       }
 
       private void SavingsAccInsertMoneyBtn_Click(object sender, EventArgs e) {
          MoneyOperation(true, IdSavingsAcc);
       }
 
-      private void SavingsAccWithdrawMoneyBtn_Click(object sender, EventArgs e) {        
+      private void SavingsAccWithdrawMoneyBtn_Click(object sender, EventArgs e) {
          MoneyOperation(false, IdSavingsAcc);
       }
 
       private void SavingsAccSendMoneyBtn_Click(object sender, EventArgs e) {
-
+         SendMoney(IdSavingsAcc);
       }
 
       /// <summary>
@@ -75,16 +76,33 @@ namespace AtmUI {
       /// <param name="idAccount"></param>
       /// <param name="amount"></param>
       private void MoneyOperation(bool typeOfOperation, int idAccount) {
-         InsertWithdrawMoney insertWithdrawMoney = new(typeOfOperation);
+         InsertWithdrawMoneyForm insertWithdrawMoney = new(typeOfOperation);
+         int resultCode;
          var result = insertWithdrawMoney.ShowDialog();
          if (result == DialogResult.OK) {
-            decimal amount = insertWithdrawMoney.Amount;
             if (typeOfOperation) {
-               homeMethods.InsertMoney(idAccount, amount);
+               homeMethods.InsertMoney(idAccount, insertWithdrawMoney.Amount);
             }
             else {
-               homeMethods.WithdrawMoney(idAccount, amount);
+               resultCode = homeMethods.WithdrawMoney(idAccount, insertWithdrawMoney.Amount);
+               if (resultCode == 204) {
+                  MessageBox.Show(ConfigurationManager.AppSettings["WithdrawErrorText"], ConfigurationManager.AppSettings["LoginErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+               }
             }
+            RefreshValues();
+         }
+      }
+
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="IdAccSender"></param>
+      private void SendMoney(int IdAccSender) {
+         SendMoneyForm sendMoneyForm = new();
+         int resultCode;
+         var result = sendMoneyForm.ShowDialog();
+         if (result == DialogResult.OK) {
+            resultCode = homeMethods.SendMoney(IdAccSender, sendMoneyForm.RecipientAccId, sendMoneyForm.Amount, sendMoneyForm.VariableNumber, sendMoneyForm.Note, sendMoneyForm.NoteForRecipient);
             RefreshValues();
          }
       }

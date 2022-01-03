@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AtmUI {
-   public partial class InsertWithdrawMoney : Form {
+   public partial class InsertWithdrawMoneyForm : Form {
 
       private bool TypeOfOperation { get; set; }
       public decimal Amount { get; private set; }
@@ -18,7 +18,7 @@ namespace AtmUI {
       /// 
       /// </summary>
       /// <param name="typeOfOperation">True = insert money, False = withdraw money</param>
-      public InsertWithdrawMoney(bool typeOfOperation) {
+      public InsertWithdrawMoneyForm(bool typeOfOperation) {
          InitializeComponent();
          TypeOfOperation = typeOfOperation;
          if (typeOfOperation) {
@@ -34,6 +34,10 @@ namespace AtmUI {
       private void AcceptBtn_Click(object sender, EventArgs e) {
          Amount = AmountNum.Value;
          this.DialogResult = DialogResult.OK;
+         this.Close();
+      }
+
+      private void CancelBtn_Click(object sender, EventArgs e) {
          this.Close();
       }
    }

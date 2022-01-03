@@ -1,6 +1,6 @@
 ﻿
 namespace AtmUI {
-   partial class Login {
+   partial class LoginForm {
       /// <summary>
       ///  Required designer variable.
       /// </summary>

@@ -4,11 +4,11 @@ using System.Configuration;
 using System.ComponentModel;
 
 namespace AtmUI {
-   public partial class Login : Form {
+   public partial class LoginForm : Form {
 
       private readonly LoginMethods loginMethods;
 
-      public Login(LoginMethods loginMethods) {
+      public LoginForm(LoginMethods loginMethods) {
          InitializeComponent();
          this.loginMethods = loginMethods;
       }
@@ -16,7 +16,7 @@ namespace AtmUI {
       private void LoginBtn_Click(object sender, EventArgs e) {
          if (ValidateChildren(ValidationConstraints.Enabled)) {
             if (loginMethods.Login(UsernameTb.Text, PinCodeTb.Text)) {
-               Home home = new(new HomeMethods(UsernameTb.Text));
+               HomeForm home = new(new HomeMethods(UsernameTb.Text));
                this.Close();
                home.Show();
             }
@@ -30,7 +30,7 @@ namespace AtmUI {
       private void CreateAccBtn_Click(object sender, EventArgs e) {
          AutoValidate = AutoValidate.Disable;
          this.Close();
-         CreateAcc createAcc = new(new CreateAccMethods());
+         CreateAccForm createAcc = new(new CreateAccMethods());
          createAcc.Show();
       }
 

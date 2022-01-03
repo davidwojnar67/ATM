@@ -67,7 +67,7 @@ namespace ATM {
       }
 
       public async Task<CurrentAccount> SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient) {
-         if (_myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance >= amount) {
+         if (_myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance >= amount && _myDbContext.Accounts.Find(IdRecipientAccount) != null) {
             _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance -= amount;
             _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdRecipientAccount).Balance += amount;
             Transaction firstTransaction = new(IdAccount, -amount, 3, null, IdRecipientAccount, variableNumber, note, noteForRecipient);

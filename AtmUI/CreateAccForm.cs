@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AtmUI {
-   public partial class CreateAcc : Form {
+   public partial class CreateAccForm : Form {
 
       private readonly CreateAccMethods createAccMethods;
       private readonly double monthlyInterest;
 
-      public CreateAcc(CreateAccMethods createAccMethods) {
+      public CreateAccForm(CreateAccMethods createAccMethods) {
          InitializeComponent();
          this.createAccMethods = createAccMethods;
          monthlyInterest = createAccMethods.RandomMonthlyInterest();
@@ -25,19 +26,22 @@ namespace AtmUI {
       private void BackToLoginBtn_Click(object sender, EventArgs e) {
          AutoValidate = AutoValidate.Disable;
          this.Close();
-         Login login = new(new LoginMethods());
+         LoginForm login = new(new LoginMethods());
          login.Show();
       }
 
       private void CreateAccBtn_Click(object sender, EventArgs e) {
          if (ValidateChildren(ValidationConstraints.Enabled)) {
-            createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
+            int resultCode = createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
             this.Close();
-            Login login = new(new LoginMethods());
+            LoginForm login = new(new LoginMethods());
             login.Show();
-         }
-         else {
-
+            if (resultCode == 200) {
+               MessageBox.Show(ConfigurationManager.AppSettings["SuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else {
+               MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
          }
       }
 

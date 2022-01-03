@@ -14,7 +14,7 @@ namespace AtmUI {
          return Convert.ToDouble(random.Next(200, 300)) / 100;
       }
 
-      public void CreateClient(string name, string surname, string address, DateTimePicker dateOfBirth, decimal currentAccountBalance,
+      public int CreateClient(string name, string surname, string address, DateTimePicker dateOfBirth, decimal currentAccountBalance,
          decimal savingsAccountBalance, double monthlyInterest, string username, string pinCode) {
 
          RestClient restClient = new("https://localhost:5001/CreateClient") { };
@@ -34,8 +34,9 @@ namespace AtmUI {
          restRequest.AddHeader("Content-Type", "application/json");
          restRequest.AddParameter("application/json", body, ParameterType.RequestBody);
 
-         restClient.Execute(restRequest);
+         var response = restClient.Execute(restRequest);
 
+         return ((int)response.StatusCode);
       }
 
 

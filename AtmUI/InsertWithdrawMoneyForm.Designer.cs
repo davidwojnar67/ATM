@@ -1,6 +1,6 @@
 ﻿
 namespace AtmUI {
-   partial class InsertWithdrawMoney {
+   partial class InsertWithdrawMoneyForm {
       /// <summary>
       /// Required designer variable.
       /// </summary>
@@ -27,6 +27,7 @@ namespace AtmUI {
          this.AcceptBtn = new System.Windows.Forms.Button();
          this.AmountNum = new System.Windows.Forms.NumericUpDown();
          this.label1 = new System.Windows.Forms.Label();
+         this.CancelBtn = new System.Windows.Forms.Button();
          ((System.ComponentModel.ISupportInitialize)(this.AmountNum)).BeginInit();
          this.SuspendLayout();
          // 
@@ -52,9 +53,20 @@ namespace AtmUI {
             232,
             0,
             0});
+         this.AmountNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
          this.AmountNum.Name = "AmountNum";
          this.AmountNum.Size = new System.Drawing.Size(244, 43);
          this.AmountNum.TabIndex = 0;
+         this.AmountNum.ThousandsSeparator = true;
+         this.AmountNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
          // 
          // label1
          // 
@@ -66,19 +78,32 @@ namespace AtmUI {
          this.label1.TabIndex = 2;
          this.label1.Text = "Amount:";
          // 
-         // InsertWithdrawMoney
+         // CancelBtn
+         // 
+         this.CancelBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+         this.CancelBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+         this.CancelBtn.Location = new System.Drawing.Point(25, 155);
+         this.CancelBtn.Name = "CancelBtn";
+         this.CancelBtn.Size = new System.Drawing.Size(145, 40);
+         this.CancelBtn.TabIndex = 2;
+         this.CancelBtn.Text = "Cancel";
+         this.CancelBtn.UseVisualStyleBackColor = true;
+         this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+         // 
+         // InsertWithdrawMoneyForm
          // 
          this.AcceptButton = this.AcceptBtn;
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(430, 207);
+         this.Controls.Add(this.CancelBtn);
          this.Controls.Add(this.label1);
          this.Controls.Add(this.AmountNum);
          this.Controls.Add(this.AcceptBtn);
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
          this.MaximizeBox = false;
-         this.Name = "InsertWithdrawMoney";
+         this.Name = "InsertWithdrawMoneyForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "InsertWithdrawMoney";
          this.TopMost = true;
@@ -93,5 +118,6 @@ namespace AtmUI {
       private System.Windows.Forms.Button AcceptBtn;
       private System.Windows.Forms.NumericUpDown AmountNum;
       private System.Windows.Forms.Label label1;
+      private System.Windows.Forms.Button CancelBtn;
    }
 }

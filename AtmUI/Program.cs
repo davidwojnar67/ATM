@@ -15,7 +15,7 @@ namespace AtmUI {
          Application.EnableVisualStyles();
          Application.SetCompatibleTextRenderingDefault(false);
          
-         Login login = new(new LoginMethods());
+         LoginForm login = new(new LoginMethods());
          login.Show();
 
          Application.Run();
