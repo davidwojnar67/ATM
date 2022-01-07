@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ATM {
    public class TransactionHistoryView {
-      public int Id { get; set; }
-      public int IdAccount { get; set; }
+      public int Id {internal get; set; }
+      public int IdAccount {get; set; }
       public string Type { get; set; }
       [Column(TypeName = "decimal(18, 4)")]
       public decimal Amount { get; set; }

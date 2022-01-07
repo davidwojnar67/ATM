@@ -64,7 +64,7 @@ namespace AtmUI {
          this.MaximizeBox = false;
          this.Name = "TransactionHistoryForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-         this.Text = "TransactionHistoryForm";
+         this.Text = "Transaction History";
          ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
          this.ResumeLayout(false);
 
