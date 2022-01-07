@@ -6,7 +6,7 @@ namespace Atm.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-         migrationBuilder.Sql("create view TransactionHistoryView as select t.IdTranHis as 'Id', t.IdAccount, m.Type, t.Amount, t.Date, t.Note, t.NoteForRecipient as 'Note_For_Recipient', t.VariableNumber as 'Variable_Number', t.FromAccId as 'From_Account', t.ToAccId as 'To_Account' from TransactionHistory t join Cdl_Movements m on m.Id = t.Movement");
+         migrationBuilder.Sql("create view TransactionHistoryView as select t.IdTranHis as 'Id', t.IdAccount, m.Type, t.Amount, t.Date, t.Note, t.NoteForRecipient, t.VariableNumber, t.FromAccId, t.ToAccId from TransactionHistory t join Cdl_Movements m on m.Id = t.Movement");
       }
 
         protected override void Down(MigrationBuilder migrationBuilder)

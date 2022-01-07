@@ -38,7 +38,7 @@ namespace ATM {
          return client;
       }
 
-      public async Task<List<TransactionHistoryView>> TransactionHistory(int IdAccount) {
+      public async Task<List<TransactionView>> TransactionHistory(int IdAccount) {
          //var transactionHistory = await _myDbContext.TransactionHistory.Where(x => x.IdAccount == IdAccount).ToListAsync();    //øešení bez view
          var transactionHistory = await _myDbContext.TransactionHistoryView.Where(x => x.IdAccount == IdAccount).ToListAsync();
 

@@ -16,6 +16,14 @@ namespace AtmUI {
          InitializeComponent();
          DataTable dataTable = (DataTable)JsonConvert.DeserializeObject(history, (typeof(DataTable)));
          dataTable.Columns.Remove("idAccount");    //dataTable.Columns.RemoveAt(0);    //2. varianta
+         dataTable.Columns["type"].ColumnName = "Type Of Operation";
+         dataTable.Columns["amount"].ColumnName = "Amount";
+         dataTable.Columns["date"].ColumnName = "Date";
+         dataTable.Columns["note"].ColumnName = "Note";
+         dataTable.Columns["noteForRecipient"].ColumnName = "Note For Recipient";
+         dataTable.Columns["variableNumber"].ColumnName = "Variable Number";
+         dataTable.Columns["fromAccId"].ColumnName = "From Account";
+         dataTable.Columns["toAccId"].ColumnName = "To Account";
          dataGridView.DataSource = dataTable;
 
       }

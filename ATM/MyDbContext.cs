@@ -15,7 +15,7 @@ namespace ATM {
       public DbSet<CurrentAccount> Accounts { get; set; }
       public DbSet<Cdl_Movement> Cdl_Movements { get; set; }
       //public DbSet<SavingsAccount> Accounts { get; set; }
-      public DbSet<TransactionHistoryView> TransactionHistoryView { get; set; }
+      public DbSet<TransactionView> TransactionHistoryView { get; set; }
 
 
       protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -25,7 +25,7 @@ namespace ATM {
             new Cdl_Movement { Id = 3, Type = "Outgoing Payment" },
             new Cdl_Movement { Id = 4, Type = "Incoming payment" }
             );
-         modelBuilder.Entity<TransactionHistoryView>().ToView(nameof(TransactionHistoryView)).HasKey(t => t.Id);
+         modelBuilder.Entity<TransactionView>().ToView(nameof(TransactionHistoryView)).HasKey(t => t.Id);
 
       }
 

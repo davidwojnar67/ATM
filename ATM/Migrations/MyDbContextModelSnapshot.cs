@@ -156,7 +156,7 @@ namespace Atm.Migrations
                     b.ToTable("TransactionHistory");
                 });
 
-            modelBuilder.Entity("ATM.TransactionHistoryView", b =>
+            modelBuilder.Entity("ATM.TransactionView", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int")
@@ -168,22 +168,25 @@ namespace Atm.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("From_Account")
+                    b.Property<int?>("FromAccId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdAccount")
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Note_For_Recipient")
+                    b.Property<string>("NoteForRecipient")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("To_Account")
+                    b.Property<int?>("ToAccId")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Variable_Number")
+                    b.Property<int?>("VariableNumber")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
