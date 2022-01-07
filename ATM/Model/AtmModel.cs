@@ -38,10 +38,12 @@ namespace ATM {
          return client;
       }
 
-      public async Task<List<Transaction>> TransactionHistory(int IdAccount) {
-         var transactionHistory = await _myDbContext.TransactionHistory.Where(x => x.IdAccount == IdAccount).ToListAsync();
+      public async Task<List<TransactionHistoryView>> TransactionHistory(int IdAccount) {
+         //var transactionHistory = await _myDbContext.TransactionHistory.Where(x => x.IdAccount == IdAccount).ToListAsync();    //øešení bez view
+         var transactionHistory = await _myDbContext.TransactionHistoryView.Where(x => x.IdAccount == IdAccount).ToListAsync();
 
          return transactionHistory;
+
       }
 
       public async Task<CurrentAccount> InsertMoney(int IdAccount, decimal amount) {

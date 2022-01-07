@@ -23,3 +23,4 @@ D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.HomeForm.resources
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.InsertWithdrawMoneyForm.resources
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.LoginForm.resources
 D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.SendMoneyForm.resources
+D:\programovani\ATM\AtmUI\obj\Debug\net5.0-windows\AtmUI.TransactionHistoryForm.resources

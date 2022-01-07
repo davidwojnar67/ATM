@@ -284,9 +284,9 @@ namespace AtmUI {
          this.MonthlyInterestLbl.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
          this.MonthlyInterestLbl.Location = new System.Drawing.Point(270, 70);
          this.MonthlyInterestLbl.Name = "MonthlyInterestLbl";
-         this.MonthlyInterestLbl.Size = new System.Drawing.Size(40, 37);
+         this.MonthlyInterestLbl.Size = new System.Drawing.Size(102, 37);
          this.MonthlyInterestLbl.TabIndex = 15;
-         this.MonthlyInterestLbl.Text = "%";
+         this.MonthlyInterestLbl.Text = "3.33 %";
          // 
          // label10
          // 
@@ -344,7 +344,7 @@ namespace AtmUI {
          this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
          this.errorProvider.ContainerControl = this;
          // 
-         // CreateAcc
+         // CreateAccForm
          // 
          this.AcceptButton = this.CreateAccBtn;
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -359,7 +359,7 @@ namespace AtmUI {
          this.Controls.Add(this.label1);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
          this.MaximizeBox = false;
-         this.Name = "CreateAcc";
+         this.Name = "CreateAccForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "ATM - Create Account";
          this.groupBox1.ResumeLayout(false);

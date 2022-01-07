@@ -20,7 +20,7 @@ namespace AtmUI {
          InitializeComponent();
          this.homeMethods = homeMethods;
 
-         var client = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(homeMethods.GetClientByUsername());
+         var client = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(homeMethods.ClientByUsername());
          IdCurrentAcc = client.currentAccount.idAccount;
          IdSavingsAcc = client.savingsAccount.idAccount;
          CurrentAccGb.Text = "Current account, Id: " + IdCurrentAcc;
@@ -32,7 +32,7 @@ namespace AtmUI {
       }
 
       private void RefreshValues() {
-         var client = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(homeMethods.GetClientByUsername());
+         var client = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(homeMethods.ClientByUsername());
 
          CurrentAccBalanceLbl.Text = client.currentAccount.balance;
          SavingsAccBalanceLbl.Text = client.savingsAccount.balance;
@@ -57,6 +57,12 @@ namespace AtmUI {
          SendMoney(IdCurrentAcc);
       }
 
+      private void CurrentAccTranHisBtn_Click(object sender, EventArgs e) {
+         string response = homeMethods.TransactionHistory(IdCurrentAcc);
+         TransactionHistoryForm transactionHistoryForm = new(response);
+         transactionHistoryForm.ShowDialog();
+      }
+
       private void SavingsAccInsertMoneyBtn_Click(object sender, EventArgs e) {
          MoneyOperation(true, IdSavingsAcc);
       }
@@ -67,6 +73,12 @@ namespace AtmUI {
 
       private void SavingsAccSendMoneyBtn_Click(object sender, EventArgs e) {
          SendMoney(IdSavingsAcc);
+      }
+
+      private void SavingsAccTranHisBtn_Click(object sender, EventArgs e) {
+         string response = homeMethods.TransactionHistory(IdSavingsAcc);
+         TransactionHistoryForm transactionHistoryForm = new(response);
+         transactionHistoryForm.ShowDialog();
       }
 
       /// <summary>
@@ -86,7 +98,7 @@ namespace AtmUI {
             else {
                resultCode = homeMethods.WithdrawMoney(idAccount, insertWithdrawMoney.Amount);
                if (resultCode == 204) {
-                  MessageBox.Show(ConfigurationManager.AppSettings["WithdrawErrorText"], ConfigurationManager.AppSettings["LoginErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  MessageBox.Show(ConfigurationManager.AppSettings["WithdrawErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                }
             }
             RefreshValues();
@@ -104,6 +116,9 @@ namespace AtmUI {
          if (result == DialogResult.OK) {
             resultCode = homeMethods.SendMoney(IdAccSender, sendMoneyForm.RecipientAccId, sendMoneyForm.Amount, sendMoneyForm.VariableNumber, sendMoneyForm.Note, sendMoneyForm.NoteForRecipient);
             RefreshValues();
+            if (resultCode == 204) {
+               MessageBox.Show(ConfigurationManager.AppSettings["SendMoneyErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
          }
       }
 

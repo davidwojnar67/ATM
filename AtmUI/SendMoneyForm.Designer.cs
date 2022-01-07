@@ -24,6 +24,7 @@ namespace AtmUI {
       /// the contents of this method with the code editor.
       /// </summary>
       private void InitializeComponent() {
+         this.components = new System.ComponentModel.Container();
          this.label1 = new System.Windows.Forms.Label();
          this.AmountNum = new System.Windows.Forms.NumericUpDown();
          this.label2 = new System.Windows.Forms.Label();
@@ -36,9 +37,11 @@ namespace AtmUI {
          this.CancelBtn = new System.Windows.Forms.Button();
          this.RecipientAccIdTb = new System.Windows.Forms.NumericUpDown();
          this.VariableNumberTb = new System.Windows.Forms.NumericUpDown();
+         this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
          ((System.ComponentModel.ISupportInitialize)(this.AmountNum)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.RecipientAccIdTb)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.VariableNumberTb)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
          this.SuspendLayout();
          // 
          // label1
@@ -62,9 +65,10 @@ namespace AtmUI {
             0,
             0});
          this.AmountNum.Name = "AmountNum";
-         this.AmountNum.Size = new System.Drawing.Size(244, 43);
+         this.AmountNum.Size = new System.Drawing.Size(260, 43);
          this.AmountNum.TabIndex = 0;
          this.AmountNum.ThousandsSeparator = true;
+         this.AmountNum.Validating += new System.ComponentModel.CancelEventHandler(this.AmountNum_Validating);
          // 
          // label2
          // 
@@ -80,7 +84,7 @@ namespace AtmUI {
          // 
          this.label3.AutoSize = true;
          this.label3.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.label3.Location = new System.Drawing.Point(25, 155);
+         this.label3.Location = new System.Drawing.Point(25, 154);
          this.label3.Name = "label3";
          this.label3.Size = new System.Drawing.Size(242, 37);
          this.label3.TabIndex = 6;
@@ -103,7 +107,7 @@ namespace AtmUI {
          this.NoteTb.Multiline = true;
          this.NoteTb.Name = "NoteTb";
          this.NoteTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-         this.NoteTb.Size = new System.Drawing.Size(244, 150);
+         this.NoteTb.Size = new System.Drawing.Size(260, 150);
          this.NoteTb.TabIndex = 3;
          // 
          // label5
@@ -123,14 +127,14 @@ namespace AtmUI {
          this.NoteForRecipientTb.Multiline = true;
          this.NoteForRecipientTb.Name = "NoteForRecipientTb";
          this.NoteForRecipientTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-         this.NoteForRecipientTb.Size = new System.Drawing.Size(244, 150);
+         this.NoteForRecipientTb.Size = new System.Drawing.Size(260, 150);
          this.NoteForRecipientTb.TabIndex = 4;
          // 
          // SendMoneyBtn
          // 
          this.SendMoneyBtn.Cursor = System.Windows.Forms.Cursors.Hand;
          this.SendMoneyBtn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.SendMoneyBtn.Location = new System.Drawing.Point(366, 459);
+         this.SendMoneyBtn.Location = new System.Drawing.Point(382, 459);
          this.SendMoneyBtn.Name = "SendMoneyBtn";
          this.SendMoneyBtn.Size = new System.Drawing.Size(198, 56);
          this.SendMoneyBtn.TabIndex = 5;
@@ -166,8 +170,9 @@ namespace AtmUI {
             0,
             0});
          this.RecipientAccIdTb.Name = "RecipientAccIdTb";
-         this.RecipientAccIdTb.Size = new System.Drawing.Size(244, 43);
+         this.RecipientAccIdTb.Size = new System.Drawing.Size(260, 43);
          this.RecipientAccIdTb.TabIndex = 1;
+         this.RecipientAccIdTb.Validating += new System.ComponentModel.CancelEventHandler(this.RecipientAccIdTb_Validating);
          // 
          // VariableNumberTb
          // 
@@ -185,15 +190,20 @@ namespace AtmUI {
             0,
             0});
          this.VariableNumberTb.Name = "VariableNumberTb";
-         this.VariableNumberTb.Size = new System.Drawing.Size(244, 43);
+         this.VariableNumberTb.Size = new System.Drawing.Size(260, 43);
          this.VariableNumberTb.TabIndex = 2;
+         // 
+         // errorProvider1
+         // 
+         this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+         this.errorProvider1.ContainerControl = this;
          // 
          // SendMoneyForm
          // 
          this.AcceptButton = this.SendMoneyBtn;
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(594, 527);
+         this.ClientSize = new System.Drawing.Size(608, 527);
          this.Controls.Add(this.VariableNumberTb);
          this.Controls.Add(this.RecipientAccIdTb);
          this.Controls.Add(this.CancelBtn);
@@ -214,6 +224,7 @@ namespace AtmUI {
          ((System.ComponentModel.ISupportInitialize)(this.AmountNum)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.RecipientAccIdTb)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.VariableNumberTb)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -233,5 +244,6 @@ namespace AtmUI {
       private System.Windows.Forms.Button CancelBtn;
       private System.Windows.Forms.NumericUpDown RecipientAccIdTb;
       private System.Windows.Forms.NumericUpDown VariableNumberTb;
+      private System.Windows.Forms.ErrorProvider errorProvider1;
    }
 }

@@ -34,7 +34,7 @@ namespace ATM {
       /// </summary>
       /// <param name="IdAccount"></param>
       /// <returns></returns>
-      Task<List<Transaction>> TransactionHistory(int IdAccount);
+      Task<List<TransactionHistoryView>> TransactionHistory(int IdAccount);
 
       /// <summary>
       /// Vložení penìz na úèet

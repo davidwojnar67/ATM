@@ -15,15 +15,18 @@ namespace ATM {
       public DbSet<CurrentAccount> Accounts { get; set; }
       public DbSet<Cdl_Movement> Cdl_Movements { get; set; }
       //public DbSet<SavingsAccount> Accounts { get; set; }
+      public DbSet<TransactionHistoryView> TransactionHistoryView { get; set; }
 
 
       protected override void OnModelCreating(ModelBuilder modelBuilder) {
          modelBuilder.Entity<Cdl_Movement>().HasData(
-            new Cdl_Movement { Id = 1, Typ = "Deposit" },
-            new Cdl_Movement { Id = 2, Typ = "Withdraw" },
-            new Cdl_Movement { Id = 3, Typ = "Outgoing Payment" },
-            new Cdl_Movement { Id = 4, Typ = "Incoming payment" }
+            new Cdl_Movement { Id = 1, Type = "Deposit" },
+            new Cdl_Movement { Id = 2, Type = "Withdraw" },
+            new Cdl_Movement { Id = 3, Type = "Outgoing Payment" },
+            new Cdl_Movement { Id = 4, Type = "Incoming payment" }
             );
+         modelBuilder.Entity<TransactionHistoryView>().ToView(nameof(TransactionHistoryView)).HasKey(t => t.Id);
+
       }
 
    }

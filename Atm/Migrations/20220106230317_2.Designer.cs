@@ -4,14 +4,16 @@ using ATM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Atm.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220106230317_2")]
+    partial class _2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,41 +156,6 @@ namespace Atm.Migrations
                     b.HasKey("IdTranHis");
 
                     b.ToTable("TransactionHistory");
-                });
-
-            modelBuilder.Entity("ATM.TransactionHistoryView", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("From_Account")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note_For_Recipient")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("To_Account")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Variable_Number")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToView("TransactionHistoryView");
                 });
 
             modelBuilder.Entity("ATM.SavingsAccount", b =>

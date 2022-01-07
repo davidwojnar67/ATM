@@ -15,11 +15,22 @@ namespace AtmUI {
          LoggedUsername = loggedUsername;
       }
 
-      public string GetClientByUsername() {
+      public string ClientByUsername() {
          RestClient restClient = new("https://localhost:5001/ClientByUsername") { };
 
          RestRequest restRequest = new(Method.GET);
          restRequest.AddParameter("Username", LoggedUsername);
+
+         var response = restClient.Execute(restRequest);
+
+         return response.Content;
+      }
+
+      public string TransactionHistory(int idAccount) {
+         RestClient restClient = new("https://localhost:5001/TransactionHistory") { };
+
+         RestRequest restRequest = new(Method.GET);
+         restRequest.AddParameter("IdAccount", idAccount);
 
          var response = restClient.Execute(restRequest);
 
@@ -69,6 +80,9 @@ namespace AtmUI {
 
          return ((int)response.StatusCode);
       }
+
+
+
 
 
    }

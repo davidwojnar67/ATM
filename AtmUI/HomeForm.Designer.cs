@@ -27,12 +27,14 @@ namespace AtmUI {
          this.LogOutBtn = new System.Windows.Forms.Button();
          this.label2 = new System.Windows.Forms.Label();
          this.CurrentAccGb = new System.Windows.Forms.GroupBox();
+         this.CurrentAccTranHisBtn = new System.Windows.Forms.Button();
          this.CurrentAccSendMoneyBtn = new System.Windows.Forms.Button();
          this.CurrentAccWithdrawMoneyBtn = new System.Windows.Forms.Button();
          this.CurrentAccInsertMoneyBtn = new System.Windows.Forms.Button();
          this.CurrentAccBalanceLbl = new System.Windows.Forms.Label();
          this.label8 = new System.Windows.Forms.Label();
          this.SavingsAccGb = new System.Windows.Forms.GroupBox();
+         this.SavingsAccTranHisBtn = new System.Windows.Forms.Button();
          this.SavingsAccSendMoneyBtn = new System.Windows.Forms.Button();
          this.SavingsAccWithdrawMoneyBtn = new System.Windows.Forms.Button();
          this.SavingsAccInsertMoneyBtn = new System.Windows.Forms.Button();
@@ -49,7 +51,7 @@ namespace AtmUI {
          // 
          this.LogOutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
          this.LogOutBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-         this.LogOutBtn.Location = new System.Drawing.Point(705, 688);
+         this.LogOutBtn.Location = new System.Drawing.Point(730, 688);
          this.LogOutBtn.Name = "LogOutBtn";
          this.LogOutBtn.Size = new System.Drawing.Size(163, 57);
          this.LogOutBtn.TabIndex = 2;
@@ -61,7 +63,7 @@ namespace AtmUI {
          // 
          this.label2.AutoSize = true;
          this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 29.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-         this.label2.Location = new System.Drawing.Point(400, 25);
+         this.label2.Location = new System.Drawing.Point(410, 25);
          this.label2.Name = "label2";
          this.label2.Size = new System.Drawing.Size(104, 45);
          this.label2.TabIndex = 19;
@@ -70,18 +72,31 @@ namespace AtmUI {
          // CurrentAccGb
          // 
          this.CurrentAccGb.BackColor = System.Drawing.SystemColors.Control;
+         this.CurrentAccGb.Controls.Add(this.CurrentAccTranHisBtn);
          this.CurrentAccGb.Controls.Add(this.CurrentAccSendMoneyBtn);
          this.CurrentAccGb.Controls.Add(this.CurrentAccWithdrawMoneyBtn);
          this.CurrentAccGb.Controls.Add(this.CurrentAccInsertMoneyBtn);
          this.CurrentAccGb.Controls.Add(this.CurrentAccBalanceLbl);
          this.CurrentAccGb.Controls.Add(this.label8);
          this.CurrentAccGb.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.CurrentAccGb.Location = new System.Drawing.Point(150, 98);
+         this.CurrentAccGb.Location = new System.Drawing.Point(75, 98);
          this.CurrentAccGb.Name = "CurrentAccGb";
-         this.CurrentAccGb.Size = new System.Drawing.Size(587, 235);
+         this.CurrentAccGb.Size = new System.Drawing.Size(793, 235);
          this.CurrentAccGb.TabIndex = 0;
          this.CurrentAccGb.TabStop = false;
          this.CurrentAccGb.Text = "Current account";
+         // 
+         // CurrentAccTranHisBtn
+         // 
+         this.CurrentAccTranHisBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+         this.CurrentAccTranHisBtn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+         this.CurrentAccTranHisBtn.Location = new System.Drawing.Point(568, 145);
+         this.CurrentAccTranHisBtn.Name = "CurrentAccTranHisBtn";
+         this.CurrentAccTranHisBtn.Size = new System.Drawing.Size(200, 50);
+         this.CurrentAccTranHisBtn.TabIndex = 8;
+         this.CurrentAccTranHisBtn.Text = "Transaction History";
+         this.CurrentAccTranHisBtn.UseVisualStyleBackColor = true;
+         this.CurrentAccTranHisBtn.Click += new System.EventHandler(this.CurrentAccTranHisBtn_Click);
          // 
          // CurrentAccSendMoneyBtn
          // 
@@ -145,6 +160,7 @@ namespace AtmUI {
          // 
          // SavingsAccGb
          // 
+         this.SavingsAccGb.Controls.Add(this.SavingsAccTranHisBtn);
          this.SavingsAccGb.Controls.Add(this.SavingsAccSendMoneyBtn);
          this.SavingsAccGb.Controls.Add(this.SavingsAccWithdrawMoneyBtn);
          this.SavingsAccGb.Controls.Add(this.SavingsAccInsertMoneyBtn);
@@ -153,12 +169,24 @@ namespace AtmUI {
          this.SavingsAccGb.Controls.Add(this.label10);
          this.SavingsAccGb.Controls.Add(this.label9);
          this.SavingsAccGb.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-         this.SavingsAccGb.Location = new System.Drawing.Point(150, 343);
+         this.SavingsAccGb.Location = new System.Drawing.Point(75, 343);
          this.SavingsAccGb.Name = "SavingsAccGb";
-         this.SavingsAccGb.Size = new System.Drawing.Size(587, 310);
+         this.SavingsAccGb.Size = new System.Drawing.Size(793, 310);
          this.SavingsAccGb.TabIndex = 1;
          this.SavingsAccGb.TabStop = false;
          this.SavingsAccGb.Text = "Savings account";
+         // 
+         // SavingsAccTranHisBtn
+         // 
+         this.SavingsAccTranHisBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+         this.SavingsAccTranHisBtn.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+         this.SavingsAccTranHisBtn.Location = new System.Drawing.Point(568, 220);
+         this.SavingsAccTranHisBtn.Name = "SavingsAccTranHisBtn";
+         this.SavingsAccTranHisBtn.Size = new System.Drawing.Size(200, 50);
+         this.SavingsAccTranHisBtn.TabIndex = 17;
+         this.SavingsAccTranHisBtn.Text = "Transaction History";
+         this.SavingsAccTranHisBtn.UseVisualStyleBackColor = true;
+         this.SavingsAccTranHisBtn.Click += new System.EventHandler(this.SavingsAccTranHisBtn_Click);
          // 
          // SavingsAccSendMoneyBtn
          // 
@@ -252,11 +280,11 @@ namespace AtmUI {
          this.NameSurnameLbl.TabIndex = 22;
          this.NameSurnameLbl.Text = "Name Surname";
          // 
-         // Home
+         // HomeForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(880, 757);
+         this.ClientSize = new System.Drawing.Size(923, 757);
          this.Controls.Add(this.NameSurnameLbl);
          this.Controls.Add(this.SavingsAccGb);
          this.Controls.Add(this.CurrentAccGb);
@@ -265,7 +293,7 @@ namespace AtmUI {
          this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
          this.MaximizeBox = false;
-         this.Name = "Home";
+         this.Name = "HomeForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "ATM - Home";
          this.CurrentAccGb.ResumeLayout(false);
@@ -296,5 +324,7 @@ namespace AtmUI {
       private System.Windows.Forms.Button SavingsAccSendMoneyBtn;
       private System.Windows.Forms.Button SavingsAccWithdrawMoneyBtn;
       private System.Windows.Forms.Button SavingsAccInsertMoneyBtn;
+      private System.Windows.Forms.Button CurrentAccTranHisBtn;
+      private System.Windows.Forms.Button SavingsAccTranHisBtn;
    }
 }
