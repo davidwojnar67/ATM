@@ -35,10 +35,13 @@ namespace AtmUI {
          this.dataGridView.AllowUserToDeleteRows = false;
          this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
          this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+         this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
          this.dataGridView.Location = new System.Drawing.Point(12, 12);
          this.dataGridView.Name = "dataGridView";
+         this.dataGridView.ReadOnly = true;
          this.dataGridView.RowTemplate.Height = 25;
          this.dataGridView.Size = new System.Drawing.Size(1356, 687);
+         this.dataGridView.StandardTab = true;
          this.dataGridView.TabIndex = 0;
          // 
          // CloseBtn
@@ -48,7 +51,7 @@ namespace AtmUI {
          this.CloseBtn.Location = new System.Drawing.Point(1223, 705);
          this.CloseBtn.Name = "CloseBtn";
          this.CloseBtn.Size = new System.Drawing.Size(145, 40);
-         this.CloseBtn.TabIndex = 3;
+         this.CloseBtn.TabIndex = 1;
          this.CloseBtn.Text = "Close";
          this.CloseBtn.UseVisualStyleBackColor = true;
          this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);

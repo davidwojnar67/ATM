@@ -68,6 +68,11 @@ namespace AtmUI {
          this.AmountNum.Size = new System.Drawing.Size(260, 43);
          this.AmountNum.TabIndex = 0;
          this.AmountNum.ThousandsSeparator = true;
+         this.AmountNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
          this.AmountNum.Validating += new System.ComponentModel.CancelEventHandler(this.AmountNum_Validating);
          // 
          // label2

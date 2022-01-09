@@ -1,3 +1,4 @@
 add-migration TransactionHistoryView
 migrationBuilder.Sql("create view TransactionHistoryView as select t.IdTranHis as 'Id', t.IdAccount, m.Type, t.Amount, t.Date, t.Note, t.NoteForRecipient, t.VariableNumber, t.FromAccId, t.ToAccId from TransactionHistory t join Cdl_Movements m on m.Id = t.Movement");
 migrationBuilder.Sql("drop view TransactionHistoryView;");
+update-database

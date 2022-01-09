@@ -1,9 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ATM {
@@ -30,7 +25,7 @@ namespace ATM {
       Task<Client> CreateClient(Client client);
 
       /// <summary>
-      /// Vrátí historii transakcí daného úètu
+      /// Vrátí historii transakcí daného úètu.
       /// </summary>
       /// <param name="IdAccount"></param>
       /// <returns></returns>

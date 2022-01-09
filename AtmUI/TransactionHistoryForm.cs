@@ -1,12 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AtmUI {
@@ -14,16 +8,23 @@ namespace AtmUI {
 
       public TransactionHistoryForm(string history) {
          InitializeComponent();
+         // Konverze historie účtu (string history, format JSON) do DataTable dataTable.
          DataTable dataTable = (DataTable)JsonConvert.DeserializeObject(history, (typeof(DataTable)));
-         dataTable.Columns.Remove("idAccount");    //dataTable.Columns.RemoveAt(0);    //2. varianta
-         dataTable.Columns["type"].ColumnName = "Type Of Operation";
-         dataTable.Columns["amount"].ColumnName = "Amount";
-         dataTable.Columns["date"].ColumnName = "Date";
-         dataTable.Columns["note"].ColumnName = "Note";
-         dataTable.Columns["noteForRecipient"].ColumnName = "Note For Recipient";
-         dataTable.Columns["variableNumber"].ColumnName = "Variable Number";
-         dataTable.Columns["fromAccId"].ColumnName = "From Account";
-         dataTable.Columns["toAccId"].ColumnName = "To Account";
+         // Ošetření případu, kdy je historie prázdná.
+         if (dataTable.Rows.Count > 0) {
+            // Odebrání sloupce s idAccount. (V celém sloupci se opakuje id účtu, na kterém je zobrazovaná historie.)
+            dataTable.Columns.Remove("idAccount");    //dataTable.Columns.RemoveAt(0);    //2. varianta
+            // Přejmenování hlaviček tabulky.
+            dataTable.Columns["type"].ColumnName = "Type Of Operation";
+            dataTable.Columns["amount"].ColumnName = "Amount";
+            dataTable.Columns["date"].ColumnName = "Date";
+            dataTable.Columns["note"].ColumnName = "Note";
+            dataTable.Columns["noteForRecipient"].ColumnName = "Note For Recipient";
+            dataTable.Columns["variableNumber"].ColumnName = "Variable Number";
+            dataTable.Columns["fromAccId"].ColumnName = "From Account";
+            dataTable.Columns["toAccId"].ColumnName = "To Account";
+         }
+         // Načtení dat historie účtu do dataGridView.
          dataGridView.DataSource = dataTable;
 
       }

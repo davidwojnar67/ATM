@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AtmUI {
@@ -33,11 +27,19 @@ namespace AtmUI {
       private void CreateAccBtn_Click(object sender, EventArgs e) {
          if (ValidateChildren(ValidationConstraints.Enabled)) {
             int resultCode = createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
-            this.Close();
-            LoginForm login = new(new LoginMethods());
-            login.Show();
+
+            // Status 200 = Úspšné založení klienta.
             if (resultCode == 200) {
+               this.Close();
+               LoginForm login = new(new LoginMethods());
+               login.Show();
                MessageBox.Show(ConfigurationManager.AppSettings["SuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            // Status 500  = Duplicitní username.
+            else if (resultCode == 500) {
+               MessageBox.Show(ConfigurationManager.AppSettings["DuplicateUsernameErrorText"], ConfigurationManager.AppSettings["DuplicateUsernameCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+               UsernameTb.ForeColor = System.Drawing.Color.Red;
+               UsernameTb.Focus();
             }
             else {
                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -46,7 +48,7 @@ namespace AtmUI {
       }
 
 
-      // Validace
+      // Validace vyplnění povinných údajů.
 
       private void NameTb_Validating(object sender, CancelEventArgs e) {
          if (string.IsNullOrWhiteSpace(NameTb.Text)) {

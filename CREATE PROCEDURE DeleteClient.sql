@@ -1,4 +1,4 @@
-CREATE PROCEDURE DeleteTheEntireClient (@IdClient INT)
+CREATE PROCEDURE DeleteClient (@IdClient INT)
 AS
 BEGIN
 DECLARE @IdCAcc INT, @IdSAcc INT;

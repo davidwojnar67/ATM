@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ATM {
    public class Client {
@@ -13,6 +11,7 @@ namespace ATM {
       public DateTime DateOfBirth { get; set; }
       public CurrentAccount CurrentAccount { get; set; }
       public SavingsAccount SavingsAccount { get; set; }
+      // Ošetøení unikátního username je v MyDbContext.
       public string Username { get; set; }
       public string PinCodeHash { get; set; }
    }
