@@ -56,7 +56,7 @@ namespace AtmUI {
          // 
          // AmountNum
          // 
-         this.AmountNum.DecimalPlaces = 4;
+         this.AmountNum.DecimalPlaces = 2;
          this.AmountNum.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
          this.AmountNum.Location = new System.Drawing.Point(320, 23);
          this.AmountNum.Maximum = new decimal(new int[] {
@@ -68,11 +68,6 @@ namespace AtmUI {
          this.AmountNum.Size = new System.Drawing.Size(260, 43);
          this.AmountNum.TabIndex = 0;
          this.AmountNum.ThousandsSeparator = true;
-         this.AmountNum.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
          this.AmountNum.Validating += new System.ComponentModel.CancelEventHandler(this.AmountNum_Validating);
          // 
          // label2

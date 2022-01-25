@@ -25,6 +25,10 @@ namespace ATM {
       }
 
       public async Task<Client> CreateClient(Client client) {
+         if (client.CurrentAccount.Balance < 0 || client.SavingsAccount.Balance < 0) {
+            return null;
+         }
+
          client.PinCodeHash = BCrypt.Net.BCrypt.HashPassword(client.PinCodeHash);
          _myDbContext.Clients.Add(client);
          await _myDbContext.SaveChangesAsync();
@@ -36,7 +40,6 @@ namespace ATM {
       }
 
       public async Task<List<TransactionView>> TransactionHistory(int IdAccount) {
-         //var transactionHistory = await _myDbContext.TransactionHistory.Where(x => x.IdAccount == IdAccount).ToListAsync();    //øešení bez view
          var transactionHistory = await _myDbContext.TransactionHistoryView.Where(x => x.IdAccount == IdAccount).ToListAsync();
 
          return transactionHistory;
@@ -55,6 +58,7 @@ namespace ATM {
       }
 
       public async Task<CurrentAccount> WithdrawMoney(int IdAccount, decimal amount) {
+         //otoèit podmínky v ifu, vyhodit exception
          if (_myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance >= amount && amount > 0) {
             _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance -= amount;
             _myDbContext.TransactionHistory.Add(new Transaction(IdAccount, -amount, 2, null, null, null, null, null));
@@ -62,7 +66,7 @@ namespace ATM {
 
             return _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount);
          }
-         return null;
+         return null;         
       }
 
       public async Task<CurrentAccount> SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient) {

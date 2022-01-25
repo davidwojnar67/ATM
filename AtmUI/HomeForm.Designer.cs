@@ -43,6 +43,7 @@ namespace AtmUI {
          this.label10 = new System.Windows.Forms.Label();
          this.label9 = new System.Windows.Forms.Label();
          this.NameSurnameLbl = new System.Windows.Forms.Label();
+         this.ChangePinBtn = new System.Windows.Forms.Button();
          this.CurrentAccGb.SuspendLayout();
          this.SavingsAccGb.SuspendLayout();
          this.SuspendLayout();
@@ -51,7 +52,7 @@ namespace AtmUI {
          // 
          this.LogOutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
          this.LogOutBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-         this.LogOutBtn.Location = new System.Drawing.Point(730, 688);
+         this.LogOutBtn.Location = new System.Drawing.Point(748, 688);
          this.LogOutBtn.Name = "LogOutBtn";
          this.LogOutBtn.Size = new System.Drawing.Size(163, 57);
          this.LogOutBtn.TabIndex = 2;
@@ -118,7 +119,7 @@ namespace AtmUI {
          this.CurrentAccWithdrawMoneyBtn.Name = "CurrentAccWithdrawMoneyBtn";
          this.CurrentAccWithdrawMoneyBtn.Size = new System.Drawing.Size(175, 50);
          this.CurrentAccWithdrawMoneyBtn.TabIndex = 1;
-         this.CurrentAccWithdrawMoneyBtn.Text = "Withdraw Money";
+         this.CurrentAccWithdrawMoneyBtn.Text = "Withdraw";
          this.CurrentAccWithdrawMoneyBtn.UseVisualStyleBackColor = true;
          this.CurrentAccWithdrawMoneyBtn.Click += new System.EventHandler(this.CurrentAccWithdrawMoneyBtn_Click);
          // 
@@ -130,7 +131,7 @@ namespace AtmUI {
          this.CurrentAccInsertMoneyBtn.Name = "CurrentAccInsertMoneyBtn";
          this.CurrentAccInsertMoneyBtn.Size = new System.Drawing.Size(175, 50);
          this.CurrentAccInsertMoneyBtn.TabIndex = 0;
-         this.CurrentAccInsertMoneyBtn.Text = "Insert Money";
+         this.CurrentAccInsertMoneyBtn.Text = "Deposit";
          this.CurrentAccInsertMoneyBtn.UseVisualStyleBackColor = true;
          this.CurrentAccInsertMoneyBtn.Click += new System.EventHandler(this.CurrentAccInsertMoneyBtn_Click);
          // 
@@ -208,7 +209,7 @@ namespace AtmUI {
          this.SavingsAccWithdrawMoneyBtn.Name = "SavingsAccWithdrawMoneyBtn";
          this.SavingsAccWithdrawMoneyBtn.Size = new System.Drawing.Size(175, 50);
          this.SavingsAccWithdrawMoneyBtn.TabIndex = 1;
-         this.SavingsAccWithdrawMoneyBtn.Text = "Withdraw Money";
+         this.SavingsAccWithdrawMoneyBtn.Text = "Withdraw";
          this.SavingsAccWithdrawMoneyBtn.UseVisualStyleBackColor = true;
          this.SavingsAccWithdrawMoneyBtn.Click += new System.EventHandler(this.SavingsAccWithdrawMoneyBtn_Click);
          // 
@@ -220,7 +221,7 @@ namespace AtmUI {
          this.SavingsAccInsertMoneyBtn.Name = "SavingsAccInsertMoneyBtn";
          this.SavingsAccInsertMoneyBtn.Size = new System.Drawing.Size(175, 50);
          this.SavingsAccInsertMoneyBtn.TabIndex = 0;
-         this.SavingsAccInsertMoneyBtn.Text = "Insert Money";
+         this.SavingsAccInsertMoneyBtn.Text = "Deposit";
          this.SavingsAccInsertMoneyBtn.UseVisualStyleBackColor = true;
          this.SavingsAccInsertMoneyBtn.Click += new System.EventHandler(this.SavingsAccInsertMoneyBtn_Click);
          // 
@@ -280,11 +281,24 @@ namespace AtmUI {
          this.NameSurnameLbl.TabIndex = 22;
          this.NameSurnameLbl.Text = "Name Surname";
          // 
+         // ChangePinBtn
+         // 
+         this.ChangePinBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+         this.ChangePinBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+         this.ChangePinBtn.Location = new System.Drawing.Point(12, 688);
+         this.ChangePinBtn.Name = "ChangePinBtn";
+         this.ChangePinBtn.Size = new System.Drawing.Size(163, 57);
+         this.ChangePinBtn.TabIndex = 3;
+         this.ChangePinBtn.Text = "Change PIN";
+         this.ChangePinBtn.UseVisualStyleBackColor = true;
+         this.ChangePinBtn.Visible = false;
+         // 
          // HomeForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(923, 757);
+         this.Controls.Add(this.ChangePinBtn);
          this.Controls.Add(this.NameSurnameLbl);
          this.Controls.Add(this.SavingsAccGb);
          this.Controls.Add(this.CurrentAccGb);
@@ -326,5 +340,6 @@ namespace AtmUI {
       private System.Windows.Forms.Button SavingsAccInsertMoneyBtn;
       private System.Windows.Forms.Button CurrentAccTranHisBtn;
       private System.Windows.Forms.Button SavingsAccTranHisBtn;
+      private System.Windows.Forms.Button ChangePinBtn;
    }
 }

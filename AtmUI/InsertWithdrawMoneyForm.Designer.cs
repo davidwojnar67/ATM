@@ -24,11 +24,14 @@ namespace AtmUI {
       /// the contents of this method with the code editor.
       /// </summary>
       private void InitializeComponent() {
+         this.components = new System.ComponentModel.Container();
          this.AcceptBtn = new System.Windows.Forms.Button();
          this.AmountNum = new System.Windows.Forms.NumericUpDown();
          this.label1 = new System.Windows.Forms.Label();
          this.CancelBtn = new System.Windows.Forms.Button();
+         this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
          ((System.ComponentModel.ISupportInitialize)(this.AmountNum)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
          this.SuspendLayout();
          // 
          // AcceptBtn
@@ -45,7 +48,6 @@ namespace AtmUI {
          // 
          // AmountNum
          // 
-         this.AmountNum.DecimalPlaces = 4;
          this.AmountNum.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
          this.AmountNum.Location = new System.Drawing.Point(159, 23);
          this.AmountNum.Maximum = new decimal(new int[] {
@@ -53,20 +55,11 @@ namespace AtmUI {
             232,
             0,
             0});
-         this.AmountNum.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
          this.AmountNum.Name = "AmountNum";
          this.AmountNum.Size = new System.Drawing.Size(244, 43);
          this.AmountNum.TabIndex = 0;
          this.AmountNum.ThousandsSeparator = true;
-         this.AmountNum.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+         this.AmountNum.Validating += new System.ComponentModel.CancelEventHandler(this.AmountNum_Validating);
          // 
          // label1
          // 
@@ -90,6 +83,11 @@ namespace AtmUI {
          this.CancelBtn.UseVisualStyleBackColor = true;
          this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
          // 
+         // errorProvider1
+         // 
+         this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+         this.errorProvider1.ContainerControl = this;
+         // 
          // InsertWithdrawMoneyForm
          // 
          this.AcceptButton = this.AcceptBtn;
@@ -108,6 +106,7 @@ namespace AtmUI {
          this.Text = "InsertWithdrawMoney";
          this.TopMost = true;
          ((System.ComponentModel.ISupportInitialize)(this.AmountNum)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -119,5 +118,6 @@ namespace AtmUI {
       private System.Windows.Forms.NumericUpDown AmountNum;
       private System.Windows.Forms.Label label1;
       private System.Windows.Forms.Button CancelBtn;
+      private System.Windows.Forms.ErrorProvider errorProvider1;
    }
 }

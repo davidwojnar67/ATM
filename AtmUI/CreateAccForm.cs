@@ -25,11 +25,13 @@ namespace AtmUI {
       }
 
       private void CreateAccBtn_Click(object sender, EventArgs e) {
+         Cursor.Current = Cursors.WaitCursor;
          if (ValidateChildren(ValidationConstraints.Enabled)) {
             int resultCode = createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
 
             // Status 200 = Úspšné založení klienta.
             if (resultCode == 200) {
+               Cursor.Current = Cursors.Default;
                this.Close();
                LoginForm login = new(new LoginMethods());
                login.Show();
@@ -37,11 +39,13 @@ namespace AtmUI {
             }
             // Status 500  = Duplicitní username.
             else if (resultCode == 500) {
+               Cursor.Current = Cursors.Default;
                MessageBox.Show(ConfigurationManager.AppSettings["DuplicateUsernameErrorText"], ConfigurationManager.AppSettings["DuplicateUsernameCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                UsernameTb.ForeColor = System.Drawing.Color.Red;
                UsernameTb.Focus();
             }
             else {
+               Cursor.Current = Cursors.Default;
                MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
          }

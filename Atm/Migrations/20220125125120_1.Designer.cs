@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Atm.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220105214841_1")]
+    [Migration("20220125125120_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,7 @@ namespace Atm.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Typ")
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -39,22 +39,22 @@ namespace Atm.Migrations
                         new
                         {
                             Id = 1,
-                            Typ = "Deposit"
+                            Type = "Deposit"
                         },
                         new
                         {
                             Id = 2,
-                            Typ = "Withdraw"
+                            Type = "Withdraw"
                         },
                         new
                         {
                             Id = 3,
-                            Typ = "Outgoing Payment"
+                            Type = "Outgoing Payment"
                         },
                         new
                         {
                             Id = 4,
-                            Typ = "Incoming payment"
+                            Type = "Incoming Payment"
                         });
                 });
 
@@ -87,13 +87,17 @@ namespace Atm.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdClient");
 
                     b.HasIndex("CurrentAccountIdAccount");
 
                     b.HasIndex("SavingsAccountIdAccount");
+
+                    b.HasIndex("Username")
+                        .IsUnique()
+                        .HasFilter("[Username] IS NOT NULL");
 
                     b.ToTable("Clients");
                 });
@@ -156,6 +160,44 @@ namespace Atm.Migrations
                     b.HasKey("IdTranHis");
 
                     b.ToTable("TransactionHistory");
+                });
+
+            modelBuilder.Entity("ATM.TransactionView", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FromAccId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdAccount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoteForRecipient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ToAccId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VariableNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToView("TransactionHistoryView");
                 });
 
             modelBuilder.Entity("ATM.SavingsAccount", b =>

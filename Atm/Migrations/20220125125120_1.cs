@@ -28,7 +28,7 @@ namespace Atm.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Typ = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,7 +68,7 @@ namespace Atm.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CurrentAccountIdAccount = table.Column<int>(type: "int", nullable: true),
                     SavingsAccountIdAccount = table.Column<int>(type: "int", nullable: true),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     PinCodeHash = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -90,13 +90,13 @@ namespace Atm.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cdl_Movements",
-                columns: new[] { "Id", "Typ" },
+                columns: new[] { "Id", "Type" },
                 values: new object[,]
                 {
                     { 1, "Deposit" },
                     { 2, "Withdraw" },
                     { 3, "Outgoing Payment" },
-                    { 4, "Incoming payment" }
+                    { 4, "Incoming Payment" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -108,6 +108,13 @@ namespace Atm.Migrations
                 name: "IX_Clients_SavingsAccountIdAccount",
                 table: "Clients",
                 column: "SavingsAccountIdAccount");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_Username",
+                table: "Clients",
+                column: "Username",
+                unique: true,
+                filter: "[Username] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

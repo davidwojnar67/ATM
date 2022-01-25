@@ -25,8 +25,7 @@ namespace AtmUI {
             Note = NoteTb.Text;
             NoteForRecipient = NoteForRecipientTb.Text;
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            this.DialogResult = DialogResult.OK;            
          }
       }
 

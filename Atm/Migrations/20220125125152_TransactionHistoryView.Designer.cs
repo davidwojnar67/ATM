@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Atm.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220106230317_2")]
-    partial class _2
+    [Migration("20220125125152_TransactionHistoryView")]
+    partial class TransactionHistoryView
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,7 @@ namespace Atm.Migrations
                         new
                         {
                             Id = 4,
-                            Type = "Incoming payment"
+                            Type = "Incoming Payment"
                         });
                 });
 
@@ -87,13 +87,17 @@ namespace Atm.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdClient");
 
                     b.HasIndex("CurrentAccountIdAccount");
 
                     b.HasIndex("SavingsAccountIdAccount");
+
+                    b.HasIndex("Username")
+                        .IsUnique()
+                        .HasFilter("[Username] IS NOT NULL");
 
                     b.ToTable("Clients");
                 });
@@ -156,6 +160,44 @@ namespace Atm.Migrations
                     b.HasKey("IdTranHis");
 
                     b.ToTable("TransactionHistory");
+                });
+
+            modelBuilder.Entity("ATM.TransactionView", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,4)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FromAccId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdAccount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoteForRecipient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ToAccId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VariableNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToView("TransactionHistoryView");
                 });
 
             modelBuilder.Entity("ATM.SavingsAccount", b =>

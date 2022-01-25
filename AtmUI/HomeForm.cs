@@ -6,8 +6,8 @@ namespace AtmUI {
    public partial class HomeForm : Form {
 
       private readonly HomeMethods homeMethods;
-      private int IdCurrentAcc;
-      private int IdSavingsAcc;
+      private readonly int IdCurrentAcc;
+      private readonly int IdSavingsAcc;
 
       public HomeForm(HomeMethods homeMethods) {
          InitializeComponent();
@@ -79,23 +79,33 @@ namespace AtmUI {
       /// </summary>
       /// <param name="typeOfOperation">True = insert money, False = withdraw money</param>
       /// <param name="idAccount"></param>
-      /// <param name="amount"></param>
       private void MoneyOperation(bool typeOfOperation, int idAccount) {
+         Cursor.Current = Cursors.WaitCursor;
          InsertWithdrawMoneyForm insertWithdrawMoney = new(typeOfOperation);
          int resultCode;
          var result = insertWithdrawMoney.ShowDialog();
          if (result == DialogResult.OK) {
             if (typeOfOperation) {
-               homeMethods.InsertMoney(idAccount, insertWithdrawMoney.Amount);
+               resultCode = homeMethods.InsertMoney(idAccount, insertWithdrawMoney.Amount);
+               if (resultCode == 200) {
+                  MessageBox.Show(ConfigurationManager.AppSettings["InsertSuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+               }
+               else if (resultCode == 400) {
+                  MessageBox.Show(ConfigurationManager.AppSettings["InsertErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+               }
             }
             else {
                resultCode = homeMethods.WithdrawMoney(idAccount, insertWithdrawMoney.Amount);
-               if (resultCode == 204) {
+               if (resultCode == 200) {
+                  MessageBox.Show(ConfigurationManager.AppSettings["WithdrawSuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
+               }
+               else if (resultCode == 204) {
                   MessageBox.Show(ConfigurationManager.AppSettings["WithdrawErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                }
             }
             RefreshValues();
          }
+         Cursor.Current = Cursors.Default;
       }
 
       /// <summary>
@@ -109,9 +119,16 @@ namespace AtmUI {
          if (result == DialogResult.OK) {
             resultCode = homeMethods.SendMoney(IdAccSender, sendMoneyForm.RecipientAccId, sendMoneyForm.Amount, sendMoneyForm.VariableNumber, sendMoneyForm.Note, sendMoneyForm.NoteForRecipient);
             RefreshValues();
-            if (resultCode == 204) {
-               MessageBox.Show(ConfigurationManager.AppSettings["SendMoneyErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (resultCode == 200) {
+               MessageBox.Show(ConfigurationManager.AppSettings["SendMoneySuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else if (resultCode == 204) {
+               MessageBox.Show(ConfigurationManager.AppSettings["SendMoney204ErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (resultCode == 400) {
+               MessageBox.Show(ConfigurationManager.AppSettings["SendMoney400ErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
          }
       }
 

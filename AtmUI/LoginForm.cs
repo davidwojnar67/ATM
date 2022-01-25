@@ -14,13 +14,16 @@ namespace AtmUI {
       }
 
       private void LoginBtn_Click(object sender, EventArgs e) {
+         Cursor.Current = Cursors.WaitCursor;
          if (ValidateChildren(ValidationConstraints.Enabled)) {
             if (loginMethods.Login(UsernameTb.Text, PinCodeTb.Text)) {
                HomeForm home = new(new HomeMethods(UsernameTb.Text));
                this.Close();
                home.Show();
+               Cursor.Current = Cursors.Default;
             }
             else {
+               Cursor.Current = Cursors.Default;
                MessageBox.Show(ConfigurationManager.AppSettings["LoginErrorText"], ConfigurationManager.AppSettings["LoginErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
          }
