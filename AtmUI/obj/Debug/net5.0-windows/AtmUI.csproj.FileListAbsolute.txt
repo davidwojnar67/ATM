@@ -63,3 +63,17 @@ D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win-x86\native\Micro
 D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\Atm.dll
 D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\Atm.pdb
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\Microsoft.Win32.SystemEvents.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\System.Configuration.ConfigurationManager.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\System.Security.AccessControl.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\System.Security.Cryptography.ProtectedData.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\System.Security.Permissions.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\System.Windows.Extensions.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win\lib\netstandard2.0\System.Security.AccessControl.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Windows.Extensions.dll
+D:\programovani\ATM\AtmUI\bin\Debug\net5.0-windows\Atm.dll.config

@@ -1,0 +1,19 @@
+docker-compose up -d //spustí docker-compose.yml
+docker-compose ps //běžící image
+docker-compose logs //log
+docker-compose down //stop that image
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P passw0rd#KONIK
+
+select name from sys.Databases
+go
+
+select name from sysobjects where xtype = "U"
+go
+
+npm install --save mssql
+
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+add-migration init
+update-database

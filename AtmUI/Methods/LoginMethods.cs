@@ -2,21 +2,45 @@
 using System;
 using System.Configuration;
 
-namespace AtmUI {
-   public class LoginMethods {
+namespace AtmUI
+{
+    public class LoginMethods
+    {
+        public enum LoginStatus
+        {
+            Success,
+            LoginFailed,
+            InvalidConnection
+        }
 
-      public bool Login(string username, string pinCode) {
 
-         RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/Authenticate") { };
+        public LoginStatus Login(string username, string pinCode)
+        {
+            RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/Authenticate") { };
 
-         RestRequest restRequest = new(Method.GET);
-         restRequest.AddParameter("username", username);
-         restRequest.AddParameter("pinCode", pinCode);
+            RestRequest restRequest = new(Method.GET);
+            restRequest.AddParameter("username", username);
+            restRequest.AddParameter("pinCode", pinCode);
 
-         var response = restClient.Execute(restRequest);
+            var response = restClient.Execute(restRequest);
 
-         return Convert.ToBoolean(response.Content);
-      }
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                if (Convert.ToBoolean(response.Content))
+                {
+                    return LoginStatus.Success;
+                }
+                else
+                {
+                    return LoginStatus.LoginFailed;
+                }
+            }
+            else
+            {
+                return LoginStatus.InvalidConnection;
+            }
 
-   }
+        }
+
+    }
 }

@@ -1,15 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AtmUI {
-   public class CurrentAccount  {
-      [Key]
-      public int IdAccount { get; private set; }
-      [Column(TypeName = "decimal(18, 4)")]
-      public decimal Balance { get; set; }
+namespace AtmUI
+{
+    public class CurrentAccount
+    {
+        public int IdAccount { get; private set; }
+        public decimal Balance { get; set; }
 
-      public CurrentAccount(decimal balance) {
-         Balance = balance;
-      }
-   }
+        public CurrentAccount(decimal balance)
+        {
+            Balance = balance;
+        }
+    }
 }

@@ -13,50 +13,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ATM {
-   public class Startup {
-      public Startup(IConfiguration configuration) {
-         Configuration = configuration;
-      }
+namespace ATM
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
-      public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }
 
-      // This method gets called by the runtime. Use this method to add services to the container.
-      public void ConfigureServices(IServiceCollection services) {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
 
-         services.AddControllers();
-         services.AddSwaggerGen(c => {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "ATM", Version = "v1" });
-         });
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ATM", Version = "v1" });
+            });
 
-         services.AddDbContext<MyDbContext>(
-         options => options.UseSqlServer(
-             Configuration.GetConnectionString("ConnectionStringDefault"))
-         );
+            services.AddDbContext<MyDbContext>(
+            options => options.UseSqlServer(
+                Configuration.GetConnectionString("ConnectionStringDefault"))
+            );
 
-         //System.InvalidOperationException: Unable to resolve service for type 'ATM.IAtmModel' while attempting to activate 'ATM.Controllers.AtmController'.
-         //at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
-         services.AddScoped<IAtmModel, AtmModel>();
+            //System.InvalidOperationException: Unable to resolve service for type 'ATM.IAtmModel' while attempting to activate 'ATM.Controllers.AtmController'.
+            //at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+            services.AddScoped<IAtmModel, AtmModel>();
 
-      }
+        }
 
-      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-         if (env.IsDevelopment()) {
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ATM v1"));
-         }
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ATM v1"));
+            }
 
-         app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
-         app.UseRouting();
+            app.UseRouting();
 
-         app.UseAuthorization();
+            app.UseAuthorization();
 
-         app.UseEndpoints(endpoints => {
-            endpoints.MapControllers();
-         });
-      }
-   }
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
 }
