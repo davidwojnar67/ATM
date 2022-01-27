@@ -7,70 +7,74 @@ namespace ATM
     {
 
         /// <summary>
-        /// Vrátí klienta dle id
+        /// Vyhledání klienta dle ID.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="Id">ID klienta, kterého hledáme.</param>
+        /// <returns>Client</returns>
         Client Client(int Id);
 
         /// <summary>
-        /// Vrátí klienta dle username
+        /// Vyhledání klienta dle Username
         /// </summary>
-        /// <param name="Username"></param>
-        /// <returns></returns>
+        /// <param name="Username">Username klienta, kterého hledáme.</param>
+        /// <returns>Client</returns>
         Client Client(string Username);
 
         /// <summary>
-        /// Vytvoøí nového klienta
+        /// Vytvoøení nového klienta.
         /// </summary>
         /// <param name="client"></param>
         /// <returns></returns>
-        Task<Client> CreateClient(Client client);
+        Task<Client> CreateClientAsync(Client client);
 
         /// <summary>
-        /// Vrátí historii transakcí daného úètu.
+        /// Vyhledání transakèní historie dle Id úètu.
         /// </summary>
         /// <param name="IdAccount"></param>
         /// <returns></returns>
-        Task<List<TransactionView>> TransactionHistory(int IdAccount);
+        Task<List<TransactionView>> TransactionHistoryAsync(int IdAccount);
 
         /// <summary>
-        /// Vložení penìz na úèet
+        /// Vložení penìz na úèet.
         /// </summary>
-        /// <param name="IdClient"></param>
+        /// <param name="IdAccount"></param>
         /// <param name="amount"></param>
         /// <returns></returns>
-        Task<CurrentAccount> InsertMoney(int IdAccount, decimal amount);
+        Task<CurrentAccount> InsertMoneyAsync(int IdAccount, decimal amount);
 
         /// <summary>
-        /// Výbìr penìz z úètu
+        /// Výbìr penìz z úètu.
         /// </summary>
-        /// <param name="IdClient"></param>
+        /// <param name="IdAccount"></param>
         /// <param name="amount"></param>
         /// <returns></returns>
         Task<CurrentAccount> WithdrawMoney(int IdAccount, decimal amount);
-
-        /// <summary>
-        /// Odeslání penìz na jiný úèet
+               
+        /// /// <summary>
+        /// Odeslání penìz.
         /// </summary>
-        /// <param name="IdAccount"></param>
-        /// <param name="IdRecipientAccount"></param>
-        /// <param name="amount"></param>
+        /// <param name="IdAccount">Id úètu z kterého jsou peníze odesílaný.</param>
+        /// <param name="IdRecipientAccount">Id úètu na který jsou peníze zasílaný.</param>
+        /// <param name="amount">Èástka.</param>
+        /// <param name="variableNumber">Variabilní èíslo.</param>
+        /// <param name="note">Poznámka, kterou vidí jenom odesílatel.</param>
+        /// <param name="noteForRecipient">Poznámka pro pøíjemce, zobrazí se pøíjemci ve sloupci Note.</param>
         /// <returns></returns>
         Task<CurrentAccount> SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient);
 
         /// <summary>
-        /// 
+        /// Autentifikace pro pøihlášení.
         /// </summary>
         /// <param name="username"></param>
-        /// <param name="pin"></param>
+        /// <param name="pinCode"></param>
         /// <returns></returns>
         bool Authenticate(string username, string pinCode);
 
         /// <summary>
-        /// 
+        /// Vrátí mìsíèní úrok.
         /// </summary>
         /// <returns></returns>
-        double MonthlyInterest();
+        float MonthlyInterest();
 
     }
 }

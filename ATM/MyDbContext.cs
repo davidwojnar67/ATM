@@ -27,7 +27,7 @@ namespace ATM
             // Vytvoøení view, které se používá pøi zobrazení historie úètu. + Je potøeba vytvoøit migraci, viz. pøiložený návod (TransactionHistoryView.txt).
             modelBuilder.Entity<TransactionView>().ToView(nameof(TransactionHistoryView)).HasKey(t => t.Id);
 
-            // Klientovo username musí být unikátní. Pokud ne, vrací se status: 500.
+            // Klientovo username musí být unikátní.
             modelBuilder.Entity<Client>().HasIndex(x => x.Username).IsUnique();
         }
 

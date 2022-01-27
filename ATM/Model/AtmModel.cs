@@ -32,32 +32,50 @@ namespace ATM
             return foundClient;
         }
 
-        public async Task<Client> CreateClient(Client client)
+        public async Task<Client> CreateClientAsync(Client client)
         {
-            if (client.CurrentAccount.Balance < 0 || client.SavingsAccount.Balance < 0)
+            if (client.CurrentAccount.Balance < 0 || client.SavingsAccount.Balance < 0 || client.Address == "" || client.Name == "" || client.Surname == "" || client.Username == "" || client.PinCodeHash == "")
             {
-                return null;
+                throw new ArgumentNullException();
             }
-
-            client.PinCodeHash = BCrypt.Net.BCrypt.HashPassword(client.PinCodeHash);
-            _myDbContext.Clients.Add(client);
-            await _myDbContext.SaveChangesAsync();
-            _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, "Deposit when opening a current account", null));
-            _myDbContext.TransactionHistory.Add(new Transaction(client.SavingsAccount.IdAccount, client.SavingsAccount.Balance, 1, null, null, null, "Deposit when opening a savings account", null));
-            await _myDbContext.SaveChangesAsync();
+                        
+            try
+            {
+                // Použití transakce, buï probìhnou všechny SaveChangesAsync, anebo žáden.
+                using var transaction = _myDbContext.Database.BeginTransaction();
+                client.PinCodeHash = BCrypt.Net.BCrypt.HashPassword(client.PinCodeHash);
+                _myDbContext.Clients.Add(client);
+                // Jsou použity dva SaveChangesAsync, jinak bychom neznali clientovo ID a nemohli bychom vytvoøit záznamy v TransactionHistory.
+                try
+                {
+                    await _myDbContext.SaveChangesAsync();
+                }
+                // Odchytavání vyjímky duplicitního username.
+                catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+                {
+                    throw new ArgumentException(ConfigurationManager.AppSettings["DuplicateUsernameException"]);
+                }
+                _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, "Deposit when opening a current account", null));
+                _myDbContext.TransactionHistory.Add(new Transaction(client.SavingsAccount.IdAccount, client.SavingsAccount.Balance, 1, null, null, null, "Deposit when opening a savings account", null));
+                await _myDbContext.SaveChangesAsync();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
 
             return client;
         }
 
-        public async Task<List<TransactionView>> TransactionHistory(int IdAccount)
+        public async Task<List<TransactionView>> TransactionHistoryAsync(int IdAccount)
         {
             var transactionHistory = await _myDbContext.TransactionHistoryView.Where(x => x.IdAccount == IdAccount).ToListAsync();
 
             return transactionHistory;
-
         }
 
-        public async Task<CurrentAccount> InsertMoney(int IdAccount, decimal amount)
+        public async Task<CurrentAccount> InsertMoneyAsync(int IdAccount, decimal amount)
         {
             if (amount <= 0)
             {
@@ -87,18 +105,24 @@ namespace ATM
 
         public async Task<CurrentAccount> SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient)
         {
-            if (_myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance >= amount && _myDbContext.Accounts.Find(IdRecipientAccount) != null)
+            if (_myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance < amount)
             {
-                _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance -= amount;
-                _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdRecipientAccount).Balance += amount;
-                Transaction firstTransaction = new(IdAccount, -amount, 3, null, IdRecipientAccount, variableNumber, note, noteForRecipient);
-                Transaction secondTransaction = new(IdRecipientAccount, amount, 4, IdAccount, null, variableNumber, noteForRecipient, null);
-                _myDbContext.TransactionHistory.AddRange(firstTransaction, secondTransaction);
-                await _myDbContext.SaveChangesAsync();
-
-                return _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount);
+                throw new ArgumentException(ConfigurationManager.AppSettings["SendMoneyBalanceException"]);
             }
-            return null;
+            else if (_myDbContext.Accounts.Find(IdRecipientAccount) == null)
+            {
+                throw new ArgumentException(ConfigurationManager.AppSettings["SendMoneyRecipientException"]);
+            }
+
+            _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount).Balance -= amount;
+            _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdRecipientAccount).Balance += amount;
+            Transaction firstTransaction = new(IdAccount, -amount, 3, null, IdRecipientAccount, variableNumber, note, noteForRecipient);
+            Transaction secondTransaction = new(IdRecipientAccount, amount, 4, IdAccount, null, variableNumber, noteForRecipient, null);
+            _myDbContext.TransactionHistory.AddRange(firstTransaction, secondTransaction);
+            await _myDbContext.SaveChangesAsync();
+
+            return _myDbContext.Accounts.FirstOrDefault(x => x.IdAccount == IdAccount);
+
         }
 
         public bool Authenticate(string username, string pinCode)
@@ -115,10 +139,10 @@ namespace ATM
             }
         }
 
-        public double MonthlyInterest()
+        public float MonthlyInterest()
         {
             Random random = new();
-            return Convert.ToDouble(random.Next(200, 300)) / 100;
+            return (random.Next(200, 300)) / 100.0f;
         }
 
     }

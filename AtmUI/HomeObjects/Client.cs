@@ -1,11 +1,9 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace AtmUI
 {
     public class Client
     {
-        public int IdClient { get; private set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Address { get; set; }

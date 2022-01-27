@@ -9,7 +9,7 @@ namespace AtmUI
     {
 
         private readonly CreateAccMethods createAccMethods;
-        private readonly double monthlyInterest;
+        private readonly float monthlyInterest;
 
         public CreateAccForm(CreateAccMethods createAccMethods)
         {
@@ -32,30 +32,24 @@ namespace AtmUI
         {
             Cursor.Current = Cursors.WaitCursor;
             if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                int resultCode = createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
-
-                // Status 200 = Úspšné založení klienta.
-                if (resultCode == 200)
+            {                
+                if (createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text))
                 {
-                    Cursor.Current = Cursors.Default;
                     this.Close();
                     LoginForm login = new(new LoginMethods());
                     login.Show();
-                    MessageBox.Show(ConfigurationManager.AppSettings["SuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                // Status 500  = Duplicitní username.
-                else if (resultCode == 500)
-                {
                     Cursor.Current = Cursors.Default;
-                    MessageBox.Show(ConfigurationManager.AppSettings["DuplicateUsernameErrorText"], ConfigurationManager.AppSettings["DuplicateUsernameCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    UsernameTb.ForeColor = System.Drawing.Color.Red;
-                    UsernameTb.Focus();
+                    MessageBox.Show(ConfigurationManager.AppSettings["CreateAccSuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     Cursor.Current = Cursors.Default;
-                    MessageBox.Show("Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(createAccMethods.GetErrorMessage(), ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if(createAccMethods.GetErrorMessage() == "This username is already used.")
+                    {
+                        UsernameTb.ForeColor = System.Drawing.Color.Red;
+                        UsernameTb.Focus();
+                    }
                 }
             }
         }

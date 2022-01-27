@@ -36,11 +36,7 @@ namespace AtmUI
                 }
                 else if (result == LoginMethods.LoginStatus.InvalidConnection)
                 {
-                    MessageBox.Show("nepodařilo se spřihládist", ConfigurationManager.AppSettings["LoginErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-
+                    MessageBox.Show(ConfigurationManager.AppSettings["ConnectionErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -48,15 +44,24 @@ namespace AtmUI
 
         private void CreateAccBtn_Click(object sender, EventArgs e)
         {
-            AutoValidate = AutoValidate.Disable;
-            this.Close();
-            CreateAccForm createAcc = new(new CreateAccMethods());
-            createAcc.Show();
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                AutoValidate = AutoValidate.Disable;
+                CreateAccForm createAcc = new(new CreateAccMethods());
+                this.Close();
+                createAcc.Show();
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception)
+            {
+                Cursor.Current = Cursors.Default;
+                MessageBox.Show(ConfigurationManager.AppSettings["ConnectionErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-
-        // Validace
-
+                
+        
+        // Validace vyplněného pole Username
         private void UsernameTb_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(UsernameTb.Text))
@@ -72,6 +77,7 @@ namespace AtmUI
             }
         }
 
+        // Validace vyplněného pole PinCode
         private void PinCodeTb_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(PinCodeTb.Text))
@@ -85,6 +91,12 @@ namespace AtmUI
                 e.Cancel = false;
                 errorProvider.SetError(PinCodeTb, "");
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            e.Cancel = false;
         }
 
     }

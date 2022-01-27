@@ -8,6 +8,9 @@ namespace AtmUI
 {
     public static class GlobalSettings
     {
+        /// <summary>
+        /// Username přihlášeného uživatele.
+        /// </summary>
         public static string Username;
     }
 }

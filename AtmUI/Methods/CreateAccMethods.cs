@@ -8,11 +8,12 @@ namespace AtmUI
 {
     public class CreateAccMethods
     {
-        public int CreateClient(string name, string surname, string address, DateTimePicker dateOfBirth, decimal currentAccountBalance,
-           decimal savingsAccountBalance, double monthlyInterest, string username, string pinCode)
+        private string errorMessage;
+
+        public bool CreateClient(string name, string surname, string address, DateTimePicker dateOfBirth, decimal currentAccountBalance, decimal savingsAccountBalance, float monthlyInterest, string username, string pinCode)
         {
 
-            RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/CreateClient") { };
+            RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/CreateClientAsync") { };
 
             Client client = new()
             {
@@ -20,8 +21,15 @@ namespace AtmUI
                 Surname = surname,
                 Address = address,
                 DateOfBirth = dateOfBirth.Value.Date,
-                CurrentAccount = new CurrentAccount(currentAccountBalance),
-                SavingsAccount = new SavingsAccount((float)monthlyInterest, savingsAccountBalance),
+                CurrentAccount = new CurrentAccount()
+                {
+                    Balance = currentAccountBalance
+                },
+                SavingsAccount = new SavingsAccount()
+                {
+                    Balance = savingsAccountBalance,
+                    InterestPerMensem = monthlyInterest
+                },
                 Username = username,
                 PinCodeHash = pinCode
             };
@@ -33,18 +41,29 @@ namespace AtmUI
             restRequest.AddParameter("application/json", body, ParameterType.RequestBody);
 
             var response = restClient.Post(restRequest);
+            int r = (int)response.StatusCode;
 
-            return ((int)response.StatusCode);
+            if (r == 200)
+            {
+                return true;
+            }
+            errorMessage = response.Content;
+            return false;
         }
 
 
-        public double MonthlyInterest()
+        public float MonthlyInterest()
         {
             RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/MonthlyInterest") { };
             RestRequest restRequest = new(Method.GET);
             var response = restClient.Execute(restRequest);
 
-            return double.Parse(response.Content.Replace(".",","));
+            return float.Parse(response.Content.Replace(".", ","));
+        }
+
+        public string GetErrorMessage()
+        {
+            return errorMessage.Substring(1, errorMessage.Length - 2); //2. varianta: return errorMessage[1..^1];
         }
 
     }

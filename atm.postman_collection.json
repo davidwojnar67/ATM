@@ -6,17 +6,17 @@
 	},
 	"item": [
 		{
-			"name": "InsertMoney",
+			"name": "InsertMoneyAsync",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/InsertMoney?IdAccount=&amount=",
+					"raw": "{{url}}/InsertMoneyAsync?IdAccount=&amount=",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"InsertMoney"
+						"InsertMoneyAsync"
 					],
 					"query": [
 						{
@@ -33,17 +33,17 @@
 			"response": []
 		},
 		{
-			"name": "WithdrawMoney",
+			"name": "WithdrawMoneyAsync",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/WithdrawMoney?IdAccount=&amount=",
+					"raw": "{{url}}/WithdrawMoneyAsync?IdAccount=&amount=",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"WithdrawMoney"
+						"WithdrawMoneyAsync"
 					],
 					"query": [
 						{
@@ -110,6 +110,23 @@
 			"response": []
 		},
 		{
+			"name": "MonthlyInterest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/MonthlyInterest",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"MonthlyInterest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "ClientByUsername",
 			"request": {
 				"method": "GET",
@@ -133,7 +150,7 @@
 			"response": []
 		},
 		{
-			"name": "CreateClient",
+			"name": "CreateClientAsync",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -147,29 +164,29 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/CreateClient",
+					"raw": "{{url}}/CreateClientAsync",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"CreateClient"
+						"CreateClientAsync"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "TransactionHistory",
+			"name": "TransactionHistoryAsync",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/TransactionHistory?IdAccount=",
+					"raw": "{{url}}/TransactionHistoryAsync?IdAccount=",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"TransactionHistory"
+						"TransactionHistoryAsync"
 					],
 					"query": [
 						{
@@ -182,17 +199,17 @@
 			"response": []
 		},
 		{
-			"name": "SendMoney",
+			"name": "SendMoneyAsync",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/SendMoney?IdAccount&IdRecipientAccount&amount&variableNumber&note&noteForRecipient",
+					"raw": "{{url}}/SendMoneyAsync?IdAccount&IdRecipientAccount&amount&variableNumber&note&noteForRecipient",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"SendMoney"
+						"SendMoneyAsync"
 					],
 					"query": [
 						{

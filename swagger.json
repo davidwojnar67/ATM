@@ -49,7 +49,7 @@
         }
       }
     },
-    "/CreateClient": {
+    "/CreateClientAsync": {
       "post": {
         "tags": [
           "Atm"
@@ -80,7 +80,7 @@
         }
       }
     },
-    "/TransactionHistory": {
+    "/TransactionHistoryAsync": {
       "get": {
         "tags": [
           "Atm"
@@ -102,8 +102,8 @@
         }
       }
     },
-    "/InsertMoney": {
-      "patch": {
+    "/InsertMoneyAsync": {
+      "post": {
         "tags": [
           "Atm"
         ],
@@ -132,8 +132,8 @@
         }
       }
     },
-    "/WithdrawMoney": {
-      "patch": {
+    "/WithdrawMoneyAsync": {
+      "post": {
         "tags": [
           "Atm"
         ],
@@ -162,8 +162,8 @@
         }
       }
     },
-    "/SendMoney": {
-      "patch": {
+    "/SendMoneyAsync": {
+      "post": {
         "tags": [
           "Atm"
         ],
@@ -265,6 +265,38 @@
               "text/json": {
                 "schema": {
                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/MonthlyInterest": {
+      "get": {
+        "tags": [
+          "Atm"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
                 }
               }
             }

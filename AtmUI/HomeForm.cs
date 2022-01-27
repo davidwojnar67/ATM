@@ -135,27 +135,19 @@ namespace AtmUI
         /// <param name="IdAccSender"></param>
         private void SendMoney(int IdAccSender)
         {
+            Cursor.Current = Cursors.WaitCursor;
             SendMoneyForm sendMoneyForm = new();
-            int resultCode;
             var result = sendMoneyForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                resultCode = homeMethods.SendMoney(IdAccSender, sendMoneyForm.RecipientAccId, sendMoneyForm.Amount, sendMoneyForm.VariableNumber, sendMoneyForm.Note, sendMoneyForm.NoteForRecipient);
-                RefreshValues();
-                if (resultCode == 200)
-                {
+                if (homeMethods.SendMoney(IdAccSender, sendMoneyForm.RecipientAccId, sendMoneyForm.Amount, sendMoneyForm.VariableNumber, sendMoneyForm.Note, sendMoneyForm.NoteForRecipient))
                     MessageBox.Show(ConfigurationManager.AppSettings["SendMoneySuccessText"], ConfigurationManager.AppSettings["SuccessCaption"], MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (resultCode == 204)
-                {
-                    MessageBox.Show(ConfigurationManager.AppSettings["SendMoney204ErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (resultCode == 400)
-                {
-                    MessageBox.Show(ConfigurationManager.AppSettings["SendMoney400ErrorText"], ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                else
+                    MessageBox.Show(homeMethods.GetErrorMessage(), ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
+
 
             }
+            RefreshValues();
         }
 
     }

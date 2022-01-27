@@ -4,6 +4,11 @@ docker-compose logs //log
 docker-compose down //stop that image
 
 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P passw0rd#KONIK
+use atm
+go
+select name from sysobjects where xtype = "U"
+go
+
 
 select name from sys.Databases
 go

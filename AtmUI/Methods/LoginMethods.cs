@@ -13,7 +13,6 @@ namespace AtmUI
             InvalidConnection
         }
 
-
         public LoginStatus Login(string username, string pinCode)
         {
             RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/Authenticate") { };

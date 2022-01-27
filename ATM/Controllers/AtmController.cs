@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ATM.Controllers
@@ -21,57 +19,37 @@ namespace ATM.Controllers
         [HttpGet("ClientById")]
         public IActionResult Client(int Id)
         {
-            Client client;
             try
             {
-                client = _atmModel.Client(Id);
+                Client client = _atmModel.Client(Id);
+                return Ok(client);
             }
             catch (Exception)
             {
                 return NotFound();
             }
-
-            return Ok(client);
         }
 
         [HttpGet("ClientByUsername")]
         public IActionResult Client(string Username)
         {
-            Client client;
             try
             {
-                client = _atmModel.Client(Username);
+                Client client = _atmModel.Client(Username);
+                return Ok(client);
             }
             catch (Exception)
             {
                 return NotFound();
             }
-
-            return Ok(client);
         }
 
-        [HttpPost("CreateClient")]
+        [HttpPost("CreateClientAsync")]
         public async Task<IActionResult> CreateClient(Client client)
-        {
-            var result = await _atmModel.CreateClient(client);
-
-            return Ok(result);
-        }
-
-        [HttpGet("TransactionHistory")]
-        public async Task<IActionResult> TransactionHistory(int IdAccount)
-        {
-            var result = await _atmModel.TransactionHistory(IdAccount);
-
-            return Ok(result);
-        }
-
-        [HttpPost("InsertMoney")]
-        public async Task<IActionResult> InsertMoney(int IdAccount, decimal amount)
         {
             try
             {
-                var result = await _atmModel.InsertMoney(IdAccount, amount);
+                var result = await _atmModel.CreateClientAsync(client);
                 return Ok(result);
             }
             catch (Exception e)
@@ -80,8 +58,30 @@ namespace ATM.Controllers
             }
         }
 
-        [HttpPost("WithdrawMoney")]
-        public async Task<IActionResult> WithdrawMoney(int IdAccount, decimal amount)
+        [HttpGet("TransactionHistoryAsync")]
+        public async Task<IActionResult> TransactionHistory(int IdAccount)
+        {
+            var result = await _atmModel.TransactionHistoryAsync(IdAccount);
+
+            return Ok(result);
+        }
+
+        [HttpPost("InsertMoneyAsync")]
+        public async Task<IActionResult> InsertMoney(int IdAccount, decimal amount)
+        {
+            try
+            {
+                var result = await _atmModel.InsertMoneyAsync(IdAccount, amount);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("WithdrawMoneyAsync")]
+        public async Task<IActionResult> WithdrawMoneyAsync(int IdAccount, decimal amount)
         {
             try
             {
@@ -93,26 +93,19 @@ namespace ATM.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        /// <summary>
-        /// 204 = Nedostatek peněz, nebo neexistující Id příjemce.
-        /// Status 400 = Klient chce poslat 0 a méně peněz. Amount nesmí být <= 0.
-        /// </summary>
-        /// <param name="IdAccount">Id účtu z kterého jsou peníze odesílaný.</param>
-        /// <param name="IdRecipientAccount">Id účtu na který jsou peníze zasílaný.</param>
-        /// <param name="amount">Částka.</param>
-        /// <param name="variableNumber">Variabilní číslo.</param>
-        /// <param name="note">Poznámka, kterou vidí jenom odesílatel.</param>
-        /// <param name="noteForRecipient">Poznámka pro příjemce, zobrazí se příjemci ve sloupci Note.</param>
-        /// <returns></returns>
-        [HttpPost("SendMoney")]
-        public async Task<IActionResult> SendMoney(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient)
+        
+        [HttpPost("SendMoneyAsync")]
+        public async Task<IActionResult> SendMoneyAsync(int IdAccount, int IdRecipientAccount, decimal amount, int? variableNumber, string note, string noteForRecipient)
         {
-            if (amount <= 0)
-                return BadRequest();
-            var result = await _atmModel.SendMoney(IdAccount, IdRecipientAccount, amount, variableNumber, note, noteForRecipient);
-
-            return Ok(result);
+            try
+            {
+                var result = await _atmModel.SendMoney(IdAccount, IdRecipientAccount, amount, variableNumber, note, noteForRecipient);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet("Authenticate")]
