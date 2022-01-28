@@ -32,8 +32,9 @@ namespace AtmUI
         {
             Cursor.Current = Cursors.WaitCursor;
             if (ValidateChildren(ValidationConstraints.Enabled))
-            {                
-                if (createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text))
+            {
+                var status = createAccMethods.CreateClient(NameTb.Text, SurnameTb.Text, AddressTb.Text, DateOfBirthDtp, CurrentAccBalanceNum.Value, SavingAccBalanceNum.Value, monthlyInterest, UsernameTb.Text, PinCodeTb.Text);
+                if (status == CreateAccMethods.CreateStatus.Ok)
                 {
                     this.Close();
                     LoginForm login = new(new LoginMethods());
@@ -45,7 +46,7 @@ namespace AtmUI
                 {
                     Cursor.Current = Cursors.Default;
                     MessageBox.Show(createAccMethods.GetErrorMessage(), ConfigurationManager.AppSettings["ErrorCaption"], MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if(createAccMethods.GetErrorMessage() == "This username is already used.")
+                    if (status == CreateAccMethods.CreateStatus.UserAlreadyExists)
                     {
                         UsernameTb.ForeColor = System.Drawing.Color.Red;
                         UsernameTb.Focus();

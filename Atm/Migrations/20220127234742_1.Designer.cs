@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Atm.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220125125120_1")]
+    [Migration("20220127234742_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

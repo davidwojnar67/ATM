@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Atm.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20220125125152_TransactionHistoryView")]
+    [Migration("20220127234755_TransactionHistoryView")]
     partial class TransactionHistoryView
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

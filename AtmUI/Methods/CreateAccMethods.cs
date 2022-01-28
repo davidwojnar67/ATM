@@ -10,7 +10,14 @@ namespace AtmUI
     {
         private string errorMessage;
 
-        public bool CreateClient(string name, string surname, string address, DateTimePicker dateOfBirth, decimal currentAccountBalance, decimal savingsAccountBalance, float monthlyInterest, string username, string pinCode)
+        public enum CreateStatus
+        {
+            Ok,
+            Failed,
+            UserAlreadyExists
+        }
+
+        public CreateStatus CreateClient(string name, string surname, string address, DateTimePicker dateOfBirth, decimal currentAccountBalance, decimal savingsAccountBalance, float monthlyInterest, string username, string pinCode)
         {
 
             RestClient restClient = new(ConfigurationManager.AppSettings["URL"] + "/CreateClientAsync") { };
@@ -45,10 +52,10 @@ namespace AtmUI
 
             if (r == 200)
             {
-                return true;
+                return CreateStatus.Ok;
             }
             errorMessage = response.Content;
-            return false;
+            return r == 400 ? CreateStatus.UserAlreadyExists : CreateStatus.Failed;
         }
 
 

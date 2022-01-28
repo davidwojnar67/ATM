@@ -55,8 +55,8 @@ namespace ATM
                 {
                     throw new ArgumentException(ConfigurationManager.AppSettings["DuplicateUsernameException"]);
                 }
-                _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, "Deposit when opening a current account", null));
-                _myDbContext.TransactionHistory.Add(new Transaction(client.SavingsAccount.IdAccount, client.SavingsAccount.Balance, 1, null, null, null, "Deposit when opening a savings account", null));
+                _myDbContext.TransactionHistory.Add(new Transaction(client.CurrentAccount.IdAccount, client.CurrentAccount.Balance, 1, null, null, null, ConfigurationManager.AppSettings["FirstCurrentAccDeposit"], null));
+                _myDbContext.TransactionHistory.Add(new Transaction(client.SavingsAccount.IdAccount, client.SavingsAccount.Balance, 1, null, null, null, ConfigurationManager.AppSettings["FirstSavingsAccDeposit"], null));
                 await _myDbContext.SaveChangesAsync();
                 transaction.Commit();
             }
